@@ -24,5 +24,5 @@ spack repo add https://github.com/FEniCS/spack-fenics.git
 then add this repository
 
 ```bash
-spack repo add https://github.com/scientificcomputing/spack-repos.git
+spack repo add https://github.com/scientificcomputing/spack_repos.git
 ```
