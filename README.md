@@ -26,3 +26,17 @@ then add this repository
 ```bash
 spack repo add https://github.com/scientificcomputing/spack_repos.git
 ```
+
+or clone it and add it
+
+```bash
+git clone https://github.com/scientificcomputing/spack_repos.git
+spack repo add spack_repos/spack_repo/scientificcomputing
+
+```
+
+Then for instance add `pyscifem`
+
+```bash
+spack add py-scifem@0.16
+```
