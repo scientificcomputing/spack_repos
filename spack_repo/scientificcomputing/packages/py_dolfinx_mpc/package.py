@@ -46,7 +46,7 @@ class PyDolfinxMpc(PythonPackage):
 
     depends_on("py-fenics-dolfinx@main+petsc4py", when="@main")
     depends_on("py-fenics-dolfinx@0.10:+petsc4py", when="@0.10")
-    depends_on("py-fenics-dolfinx@0.9:+petsc4py", when="@0.9")
+    depends_on("py-fenics-dolfinx@0.9+petsc4py", when="@0.9")
     depends_on("py-fenics-dolfinx@0.8+petsc4py", when="@0.8")
 
     depends_on("py-nanobind@2:", when="@0.9:", type="build")
