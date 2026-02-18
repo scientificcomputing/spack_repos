@@ -19,12 +19,13 @@ class PyWildmeshing(PythonPackage):
 
     license("MPL", checked_by="jorgensd")
 
-    version("main", branch="main")
-    version("0.4", sha256="e09ff7b7228b5a2ae57f6386ffb1eb1dddef0bd7cef5360c002c6d3b97b03a4e")
+    version("main", branch="main", submodules=True)
+    version("0.4", commit="bc835076c1e2b2c92fe5364f5bc7f4119e6c5fd3", submodules=True)
     
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-numpy", type="run")
     depends_on("py-setuptools@42:", type="build")
+    depends_on("py-svgwrite", type="run")
     depends_on("gmp", type="build")
     
 
@@ -58,4 +59,12 @@ class PyWildmeshing(PythonPackage):
             r'wildmeshing_download_tetwild\(\)',
             f'wildmeshing_download_tetwild()\n{patch_header_cmd}',
             'CMakeLists.txt'
+        )
+
+        # 4. Patch svgpathtools for "modern" python
+
+        filter_file(
+            "from collections import MutableSequence",
+            "from collections.abc import MutableSequence",
+            join_path("wildmeshing", "parse_svg", "svgpathtools", "path.py")
         )
