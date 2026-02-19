@@ -20,7 +20,7 @@ class PyTetwild(PythonPackage):
     license("MPL", checked_by="jorgensd")
 
     version("main", branch="main", submodules=True)
-    version("0.2.3", sha256="4f6e9d86cccac4f6028a4796d7ea2b4bbe3a86b9d89b4348a2f1cb5307a4054e")
+    version("0.2.3", tag="v0.2.3", submodules=True)    
     
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-nanobind@1.3.2:", when="@0.2.3:", type="build")
