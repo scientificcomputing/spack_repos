@@ -22,11 +22,10 @@ class PyMri2mesh(PythonPackage):
     version("main", branch="main")
     version("0.2.1", sha256="4aae1d4555b134d0827e9feaad685647cbc52cde2ae2eaf12a231e687603c09a")
 
-    # Wildmeshing not available on spack
-    # variant("mesh", default=False, description="Support meshing")
-    depends_on("py-packaging")
+    variant("mesh", default=True, description="Support meshing")
 
     depends_on("python@3.10:", when="@main:", type=("build", "run"))
+    depends_on("py-packaging")
    
     depends_on("py-pyvista", type="run")
     depends_on("py-numpy", type="run")
@@ -37,3 +36,7 @@ class PyMri2mesh(PythonPackage):
     depends_on("py-meshio@2.3.5:", type="run")
     
     depends_on("py-setuptools@42:", type="build")
+
+    with when("+mesh"):
+        depends_on("py-wildmeshing", type="run")
+        depends_on("py-h5py+mpi", type="run")
