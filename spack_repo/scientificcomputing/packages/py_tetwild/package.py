@@ -33,14 +33,17 @@ class PyTetwild(PythonPackage):
     def patch(self):
         if self.spec.satisfies("@0.2.3"):
             # Get nanobind cmake path through python
-            patch_nanobind = ('execute_process('
-            'COMMAND "${Python_EXECUTABLE}" -c "import nanobind; print(nanobind.cmake_dir())"'
-            'OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE NB_DIR)'
-            'list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")'
-            r'\n'
+            patch_nanobind = """
+            execute_process(
+                COMMAND "${Python_EXECUTABLE}" -c "import nanobind; print(nanobind.cmake_dir())"
+                OUTPUT_STRIP_TRAILING_WHITESPACE 
+                OUTPUT_VARIABLE NB_DIR
             )
+            list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
+
+            """
             filter_file(
                 r'find_package\(nanobind CONFIG REQUIRED\)',
-                f'{patch_nanobind}find_package(nanobind CONFIG REQUIRED)'
+                f'{patch_nanobind}find_package(nanobind CONFIG REQUIRED)',
                 "CMakeLists.txt"
             )
