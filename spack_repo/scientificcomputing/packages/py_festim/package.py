@@ -31,13 +31,17 @@ class PyFestim(PythonPackage):
     depends_on("py-setuptools@42:", type="build")
 
     depends_on("py-scifem@0.4.0:", type="run")
-    depends_on("py-adios4dolfinx@main", when="@main", type="run")
-    depends_on("py-adios4dolfinx", when="@2.0:", type="run")
 
-    depends_on("py-fenics-dolfinx@0.10:+petsc4py", when="@2.0:", type="run")
+    depends_on("py-adios4dolfinx@0.10", when="@2.0-beta.2post1:", type="run")
+    depends_on("py-adios4dolfinx@main", when="@main", type="run")
+
+    depends_on("py-fenics-dolfinx@0.10+petsc4py", when="@2.0-beta.2post1:", type="run")
     depends_on("py-fenics-dolfinx@main+petsc4py", when="@main", type="run")
+   
     depends_on("fenics-dolfinx+adios2", type="run")
+   
     depends_on("petsc+mumps", type="run")
+   
     depends_on("py-numpy", type="run")
     depends_on("py-sympy", type="run")
     depends_on("py-tqdm", type="run")
