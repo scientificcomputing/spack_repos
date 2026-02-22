@@ -31,7 +31,8 @@ class PyFestim(PythonPackage):
     depends_on("py-setuptools@42:", type="build")
 
     depends_on("py-scifem@0.4.0:", type="run")
-    depends_on("py-adios4dolfinx", type="run")
+    depends_on("py-adios4dolfinx@main", when="@main", type="run")
+    depends_on("py-adios4dolfinx", when="@2.0:", type="run")
 
     depends_on("py-fenics-dolfinx@0.10:+petsc4py", when="@2.0:", type="run")
     depends_on("py-fenics-dolfinx@main+petsc4py", when="@main", type="run")
