@@ -7,7 +7,7 @@ from spack_repo.builtin.build_systems.python import PythonPackage
 from spack.package import *
 
 
-class FenicsxIi(PythonPackage):
+class PyFenicsxIi(PythonPackage):
     """FEniCSx_ii is an extension of FEniCSx that allows
     users to work with non-conforming 3D-1D meshes.
     The core algorithm is based on the framework proposed by
