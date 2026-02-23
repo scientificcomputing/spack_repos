@@ -22,7 +22,7 @@ class FenicsxIi(PythonPackage):
 
     version("main", branch="main")
     version("0.4.0", sha256="e3ec634ccb34e70c77f39bd3f7498910139f57653a09ef4278461f34bd72d9d1")
-    
+
     variant("petsc", default=True, description="PETSc support")
 
     depends_on("python@3.10:", type=("build", "run"))
