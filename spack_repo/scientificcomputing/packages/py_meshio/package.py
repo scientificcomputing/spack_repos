@@ -6,6 +6,7 @@ from spack_repo.builtin.build_systems.python import PythonPackage
 
 from spack.package import *
 
+
 class PyMeshio(PythonPackage):
     """MeshIO is a Python library to read and write many mesh formats."""
 
@@ -28,6 +29,6 @@ class PyMeshio(PythonPackage):
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-importlib-metadata", when="^python@:3.7", type=("build", "run"))
     depends_on("py-rich", type="run")
-    
+
     with when("+xdmf"):
         depends_on("py-hdf5", type="run")

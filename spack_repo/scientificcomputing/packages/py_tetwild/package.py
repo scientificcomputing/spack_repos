@@ -8,8 +8,7 @@ from spack.package import *
 
 
 class PyTetwild(PythonPackage):
-    """Python interface to tetrahedralize using ftetwild
-    """
+    """Python interface to tetrahedralize using ftetwild"""
 
     homepage = "https://github.com/pyvista/pytetwild"
     url = "https://github.com/pyvista/pytetwild/archive/refs/tags/v0.2.3.tar.gz"
@@ -20,15 +19,14 @@ class PyTetwild(PythonPackage):
     license("MPL", checked_by="jorgensd")
 
     version("main", branch="main", submodules=True)
-    version("0.2.3", tag="v0.2.3", submodules=True)    
-    
+    version("0.2.3", tag="v0.2.3", submodules=True)
+
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-nanobind@1.3.2:", when="@0.2.3:", type="build")
     depends_on("py-scikit-build-core@0.10: +pyproject", when="@0.2.3:", type="build")
     depends_on("gmp", type="build")
-    
-    depends_on("py-numpy", type="run")
 
+    depends_on("py-numpy", type="run")
 
     def patch(self):
         if self.spec.satisfies("@0.2.3"):
@@ -43,7 +41,7 @@ class PyTetwild(PythonPackage):
 
             """
             filter_file(
-                r'find_package\(nanobind CONFIG REQUIRED\)',
-                f'{patch_nanobind}find_package(nanobind CONFIG REQUIRED)',
-                "CMakeLists.txt"
+                r"find_package\(nanobind CONFIG REQUIRED\)",
+                f"{patch_nanobind}find_package(nanobind CONFIG REQUIRED)",
+                "CMakeLists.txt",
             )
