@@ -52,7 +52,7 @@ jobs:
           path: spack_repos
       - uses: ./spack_repos/.github/actions/test-package
         with:
-          spec: py-dolfinx-mpcm@${{ matrix.version }} ${{ matrix.spec }}
+          spec: py-dolfinx-mpc@${{ matrix.version }} ${{ matrix.spec }}
           remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
 
       - name: Import test
