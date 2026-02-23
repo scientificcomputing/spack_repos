@@ -39,14 +39,8 @@ class PyGotranx(PythonPackage):
     # the license, set checked_by to your Github username.
     license("MIT", checked_by="finsberg")
 
-    version(
-        "1.5.0",
-        sha256="5d9abfc419aa56ffaa65c96e8a50283399e918606249c0651afe6f6c3216957a",
-    )
-    version(
-        "1.4.0",
-        sha256="47d79462d5219cefe4d6346a68292f7504a11e46512f69dcd300a6413d1084e0",
-    )
+    version("1.5.0", sha256="5d9abfc419aa56ffaa65c96e8a50283399e918606249c0651afe6f6c3216957a")
+    version("1.4.0", sha256="47d79462d5219cefe4d6346a68292f7504a11e46512f69dcd300a6413d1084e0")
 
     # Python version and Build backend
     depends_on("python@3.9:", type=("build", "run"))
