@@ -44,7 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.16.1", "0.14.0"]
-        spec: ["", "+adios2+petsc+biomed+hdf5"]
+        spec: ["+adios2+petsc+biomed+hdf5"]
 
     steps:
       - uses: actions/checkout@v5
@@ -59,7 +59,7 @@ jobs:
         run: |
           spack env activate ./env
           python -c "import scifem"
-          
+
       - name: Run tests
         shell: spack-bash {0}
         run: |
