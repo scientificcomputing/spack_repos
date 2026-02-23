@@ -54,6 +54,34 @@ e.g
 spack install -j 4
 ```
 
+
+## How to guides
+
+
+### Checking out a specific version of a package
+
+If you want to check out a specific branch, create new version, or edit an existing version of a package, you can use the `spack edit <name of package>` command, e.g
+```
+spack edit py-scifem
+```
+This will open the package.py file in your default editor, where you can make the necessary changes, for example say you want to check out a branch called `feature-x` you can add the following to the `version` section of the package.py file
+```python
+version("X.Y.Z.dev0", branch="feature-x")
+```
+where X.Y.Z is the latest release, and then use `spack add <name of package>@X.Y.Z.dev0`, e.g `spack add py-scifem@X.Y.Z.dev0` to add that specific branch to your spack environment. If you have an existing environment you can edit the config file using 
+```
+spack config edit
+```
+Next run 
+```
+spack concretize --fresh --force
+```
+and then 
+```
+spack install -j <number of cores>
+```
+
+
 ## Contributing
 We welcome contributions to this project! If you have a new package or you want to improve the existing ones, please follow the steps in [CONTRIBUTING.md](CONTRIBUTING.md).
 

@@ -11,4 +11,10 @@ We welcome contributions to this project! If you have an idea for a new package,
 
 The main documentation for adding a new package to the Scientific Computing space repositories is found here: https://spack.readthedocs.io/en/latest/packaging_guide_creation.html#creating-and-editing-packages
 
+Note if you want to use vscode as the default editor for spack you can set
+```bash
+export SPACK_EDITOR="code --wait"
+```
+
 Once you have created a new package please have a look at the existing packages in this repository to see if there are any similar ones that you can use as a template for your new package.
+
