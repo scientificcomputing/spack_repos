@@ -8,8 +8,10 @@ from spack.package import *
 
 
 class FenicsxIi(PythonPackage):
-    """FEniCSx_ii is an extension of FEniCSx that allows users to work with non-conforming 3D-1D meshes.
-    The core algorithm is based on the framework proposed by Kuchta 2021 and implemented in FEniCS_ii.
+    """FEniCSx_ii is an extension of FEniCSx that allows
+    users to work with non-conforming 3D-1D meshes.
+    The core algorithm is based on the framework proposed by
+    Kuchta 2021 and implemented in FEniCS_ii.
     """
 
     homepage = "https://scientificcomputing.github.io/fenicsx_ii/"

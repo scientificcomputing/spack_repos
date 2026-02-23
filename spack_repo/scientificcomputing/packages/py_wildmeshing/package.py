@@ -8,7 +8,8 @@ from spack.package import *
 
 
 class PyWildmeshing(PythonPackage):
-    """Python interface to triangulate and tetrahedralize using ftetwild or triwild"""
+    """Python interface to triangulate and tetrahedralize
+    using ftetwild or triwild"""
 
     homepage = "https://wildmeshing.github.io/python/"
     url = "https://github.com/wildmeshing/wildmeshing-python/archive/refs/tags/0.4.tar.gz"
@@ -36,7 +37,10 @@ class PyWildmeshing(PythonPackage):
         # -Wno-error: Prevents warnings from stopping the build
         filter_file(
             r"project\(WildMeshing\)",
-            "project(WildMeshing)\nadd_compile_options(-fpermissive -Wno-error -Wno-array-bounds -Wno-stringop-overflow)",
+            (
+                "project(WildMeshing)\nadd_compile_options(-fpermissive "
+                "-Wno-error -Wno-array-bounds -Wno-stringop-overflow)"
+            ),
             "CMakeLists.txt",
         )
 
@@ -48,7 +52,10 @@ class PyWildmeshing(PythonPackage):
         # NOTE: The location of windingnumber.h is in a weird place
         patch_header_cmd = (
             "execute_process(COMMAND sed -i "
-            r'"1i #pragma GCC diagnostic ignored \"-Warray-bounds\"\n#pragma GCC diagnostic ignored \"-Wstringop-overflow\"" '
+            (
+                r'"1i #pragma GCC diagnostic ignored \"-Warray-bounds\"\n'
+                r'#pragma GCC diagnostic ignored \"-Wstringop-overflow\"" '
+            )
             "${THIRD_PARTY_DIR}tetwild/src/external/WindingNumber.h)"
         )
 
