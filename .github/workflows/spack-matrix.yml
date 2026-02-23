@@ -36,6 +36,81 @@ jobs:
       - run: ./style_check.sh HEAD^
 
 
+  py-dolfinx-mpc:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.10.1", "0.9.3", "0.8.1"]
+        spec: ["", "+numba"]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-dolfinx-mpcm@${{ matrix.version }} ${{ matrix.spec }}
+          remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
+
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import dolfinx_mpc"
+
+  py-fenicsx-ii:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.4.0"]
+        spec: ["", "+petsc"]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-fenicsx-ii@${{ matrix.version }} ${{ matrix.spec }}
+          remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
+
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import fenicsx_ii"
+
+  py-io4dolfinx:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "1.1.0"]
+        spec: ["", "+adios2+h5py+xdmf+vtkhdf+pyvista"]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-io4dolfinx@${{ matrix.version }} ${{ matrix.spec }}
+          remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
+
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import io4dolfinx"      
+      
   py-scifem:
     needs: style-check
     runs-on: ubuntu-latest
@@ -69,4 +144,3 @@ jobs:
           spack stage py-scifem@${{ matrix.version }} ${{ matrix.spec }}
           spack cd py-scifem@${{ matrix.version }} ${{ matrix.spec }}
           python -m pytest
-      
