@@ -14,9 +14,7 @@ class PyScifem(PythonPackage):
     """
 
     homepage = "https://scientificcomputing.github.io/scifem/"
-    url = (
-        "https://github.com/scientificcomputing/scifem/archive/refs/tags/v0.7.0.tar.gz"
-    )
+    url = "https://github.com/scientificcomputing/scifem/archive/refs/tags/v0.7.0.tar.gz"
     git = "https://github.com/scientificcomputing/scifem.git"
 
     maintainers("finsberg", "jorgensd")
@@ -24,30 +22,12 @@ class PyScifem(PythonPackage):
     license("MIT", checked_by="jorgensd")
 
     version("main", branch="main")
-    version(
-        "0.16.1",
-        sha256="ebf32cceafd5008aca49cbcbe9e122c8fc06ad299ccd96d701113727bd160695",
-    )
-    version(
-        "0.14.0",
-        sha256="a875311cdd21f1c6395be67c0220df2f03e52a3571041eb75deef0972d511cbb",
-    )
-    version(
-        "0.7.0",
-        sha256="016556573a05d2bebb983017c41427d906df870633d23e5bd9d68af8d4b81de2",
-    )
-    version(
-        "0.6.0",
-        sha256="548c9af8997537bc6830c898a9ffe7007dda16b5e40f3240c97e646cfd0a30b3",
-    )
-    version(
-        "0.5.0",
-        sha256="1e5978ab97889c2d6bad80e375c9db1b050bfb68c197eada17928e6908f15372",
-    )
-    version(
-        "0.4.0",
-        sha256="c4494008c974c3303de7d28d40e038478c4fc1c7c24b7117305bd552a2a1c5a4",
-    )
+    version("0.16.1", sha256="ebf32cceafd5008aca49cbcbe9e122c8fc06ad299ccd96d701113727bd160695")
+    version("0.14.0", sha256="a875311cdd21f1c6395be67c0220df2f03e52a3571041eb75deef0972d511cbb")
+    version("0.7.0", sha256="016556573a05d2bebb983017c41427d906df870633d23e5bd9d68af8d4b81de2")
+    version("0.6.0", sha256="548c9af8997537bc6830c898a9ffe7007dda16b5e40f3240c97e646cfd0a30b3")
+    version("0.5.0", sha256="1e5978ab97889c2d6bad80e375c9db1b050bfb68c197eada17928e6908f15372")
+    version("0.4.0", sha256="c4494008c974c3303de7d28d40e038478c4fc1c7c24b7117305bd552a2a1c5a4")
 
     variant("adios2", default=False, description="ADIOS2 support")
     variant("petsc", default=False, description="PETSc support")
