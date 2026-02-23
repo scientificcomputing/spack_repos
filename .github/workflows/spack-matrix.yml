@@ -1,0 +1,74 @@
+name: 🤖
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * MON" # weekly, Mondays 0200
+
+jobs:
+  style-check:
+    name: ✨
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+      - name: Fetch Spack CI scripts
+        uses: actions/checkout@v5
+        with:
+          repository: spack/spack
+          ref: develop
+          path: spack-core
+      - run: wget https://raw.githubusercontent.com/spack/spack-packages/refs/heads/develop/.github/workflows/requirements/style/requirements.txt
+      - run: wget https://raw.githubusercontent.com/spack/spack-packages/refs/heads/develop/.flake8
+      - run: wget https://raw.githubusercontent.com/spack/spack-packages/refs/heads/develop/pyproject.toml
+      - run: wget https://raw.githubusercontent.com/spack/spack-packages/refs/heads/develop/.ci/style_check.sh
+      - run: pip install -r requirements.txt
+      - run: chmod +x style_check.sh
+      - run: ./style_check.sh HEAD^
+
+
+  py-scifem:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.16.1", "0.14.0"]
+        spec: ["", "+adios2 petsc biomed hdf5"]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-scifem@${{ matrix.version }} ${{ matrix.spec }}
+      - name: Run tests
+        if: ${{ matrix.version != '0.8' }}
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          spack install --add py-pytest
+          spack stage py-scifem@${{ matrix.version }} ${{ matrix.spec }}
+          spack cd py-scifem@${{ matrix.version }} ${{ matrix.spec }}
+          python -m pytest -n auto test/
+      # NOTE: 0.8 has test_all_elements_included broken
+      - name: Run tests
+        if: ${{ matrix.version == '0.8' }}
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          spack install --add py-pytest py-sympy py-pytest-xdist
+          spack stage py-scifem@${{ matrix.version }} ${{ matrix.spec }}
+          spack cd py-scifem@${{ matrix.version }} ${{ matrix.spec }}
+          python -m pytest -n auto -k "not test_all_elements_included" test/
