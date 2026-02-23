@@ -79,7 +79,6 @@ class PyScifem(PythonPackage):
     with when("+petsc"):
         depends_on("py-petsc4py", type="run")
         depends_on("py-fenics-dolfinx+petsc4py", type="run")
-        depends_on("petsc+mumps", type="run")
 
     with when("+biomed"):
         depends_on("py-nibabel", type="run")
