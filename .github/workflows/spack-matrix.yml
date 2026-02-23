@@ -54,21 +54,11 @@ jobs:
         with:
           spec: py-scifem@${{ matrix.version }} ${{ matrix.spec }}
       - name: Run tests
-        if: ${{ matrix.version != '0.8' }}
         shell: spack-bash {0}
         run: |
           spack env activate ./env
           spack install --add py-pytest
           spack stage py-scifem@${{ matrix.version }} ${{ matrix.spec }}
           spack cd py-scifem@${{ matrix.version }} ${{ matrix.spec }}
-          python -m pytest -n auto test/
-      # NOTE: 0.8 has test_all_elements_included broken
-      - name: Run tests
-        if: ${{ matrix.version == '0.8' }}
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          spack install --add py-pytest py-sympy py-pytest-xdist
-          spack stage py-scifem@${{ matrix.version }} ${{ matrix.spec }}
-          spack cd py-scifem@${{ matrix.version }} ${{ matrix.spec }}
-          python -m pytest -n auto -k "not test_all_elements_included" test/
+          python -m pytest
+      
