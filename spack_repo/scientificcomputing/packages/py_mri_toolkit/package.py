@@ -25,9 +25,8 @@ from spack.package import *
 
 
 class PyMriToolkit(PythonPackage):
-    """FIXME: Put a proper description of your package here."""
+    """MRI-toolkit provides a set of features dedicated to human MRI data post-processing"""
 
-    # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://scientificcomputing.github.io/mri-toolkit"
     git = "https://github.com/scientificcomputing/mri-toolkit.git"
 
@@ -49,19 +48,19 @@ class PyMriToolkit(PythonPackage):
     depends_on("python@3.10:", type=("build", "run"))
 
     depends_on("py-setuptools@61.2:", type="build")
-    depends_on("py-tqdm", type="run")
-    depends_on("py-numpy", type="run")
-    depends_on("py-rich-argparse", type="run")
-    depends_on("py-nibabel", type="run")
-    depends_on("py-pandas", type="run")
-    depends_on("py-scipy", type="run")
+    depends_on("py-tqdm", type=("build", "run"))
+    depends_on("py-numpy", type=("build", "run"))
+    depends_on("py-rich-argparse", type=("build", "run"))
+    depends_on("py-nibabel", type=("build", "run"))
+    depends_on("py-pandas", type=("build", "run"))
+    depends_on("py-scipy", type=("build", "run"))
 
     variant("show", default=True, description="Show images in the terminal")
     with when("+show"):
-        depends_on("py-pillow", type="run")
-        depends_on("py-matplotlib", type="run")
-        depends_on("py-textual-image", type="run")
+        depends_on("py-pillow", type=("build", "run"))
+        depends_on("py-matplotlib", type=("build", "run"))
+        depends_on("py-textual-image", type=("build", "run"))
 
     variant("napari", default=True, description="Napari support")
     with when("+napari"):
-        depends_on("py-napari", type="run")
+        depends_on("py-napari", type=("build", "run"))
