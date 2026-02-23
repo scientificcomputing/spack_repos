@@ -5,6 +5,18 @@ inputs:
     description: 'Spack spec syntax'
     required: true
     type: string
+  remote_repos:
+    description: 'Space-separated list of remote spack repository URLs to add (e.g., https://github.com/...)'
+    required: false
+    default: ''
+  local_repo_name:
+    description: 'Name for the local spack repository (e.g., scientificcomputing)'
+    required: false
+    default: 'scientificcomputing'
+  local_repo_path:
+    description: 'Relative path from GITHUB_WORKSPACE to the local spack repository'
+    required: false
+    default: 'spack_repos/spack_repo/scientificcomputing'
 runs:
   using: "composite"
   steps:
@@ -27,8 +39,29 @@ runs:
     - name: Add repos
       shell: spack-bash {0}
       run: |
-        spack repo add https://github.com/FEniCS/spack-fenics.git
-        spack repo add --name scientificcomputing $GITHUB_WORKSPACE/spack_repos/spack_repo/scientificcomputing
+        # Add remote repos (Handles empty, one, or multiple space-separated URLs)
+        for repo in ${{ inputs.remote_repos }}; do
+          if [ -n "$repo" ]; then
+            echo "Adding remote repo: $repo"
+            spack repo add "$repo"
+          fi
+        done
+
+        # Add local repo (Only runs if a path is provided)
+        LOCAL_PATH="${{ inputs.local_repo_path }}"
+        LOCAL_NAME="${{ inputs.local_repo_name }}"
+        
+        if [ -n "$LOCAL_PATH" ]; then
+          echo "Adding local repo: $GITHUB_WORKSPACE/$LOCAL_PATH"
+          if [ -n "$LOCAL_NAME" ]; then
+            spack repo add --name "$LOCAL_NAME" "$GITHUB_WORKSPACE/$LOCAL_PATH"
+          else
+            # Fallback just in case a path is passed without a specific name
+            spack repo add "$GITHUB_WORKSPACE/$LOCAL_PATH"
+          fi
+        fi
+
+        # Verify added repos
         spack config get repos
         spack repo list
 

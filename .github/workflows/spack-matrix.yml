@@ -53,6 +53,7 @@ jobs:
       - uses: ./spack_repos/.github/actions/test-package
         with:
           spec: py-scifem@${{ matrix.version }} ${{ matrix.spec }}
+          remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
 
       - name: Import test
         shell: spack-bash {0}
