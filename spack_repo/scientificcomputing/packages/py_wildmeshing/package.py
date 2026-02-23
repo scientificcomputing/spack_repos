@@ -50,12 +50,13 @@ class PyWildmeshing(PythonPackage):
         # regardless of target flags.
 
         # NOTE: The location of windingnumber.h is in a weird place
+        line = (
+            r'"1i #pragma GCC diagnostic ignored \"-Warray-bounds\"\n'
+            r'#pragma GCC diagnostic ignored "-Wstringop-overflow"" '
+        )
         patch_header_cmd = (
             "execute_process(COMMAND sed -i "
-            (
-                r'"1i #pragma GCC diagnostic ignored \"-Warray-bounds\"\n'
-                r'#pragma GCC diagnostic ignored \"-Wstringop-overflow\"" '
-            )
+            f"{line}"
             "${THIRD_PARTY_DIR}tetwild/src/external/WindingNumber.h)"
         )
 

@@ -34,7 +34,7 @@ class PyTetwild(PythonPackage):
             patch_nanobind = """
             execute_process(
                 COMMAND "${Python_EXECUTABLE}" -c "import nanobind; print(nanobind.cmake_dir())"
-                OUTPUT_STRIP_TRAILING_WHITESPACE 
+                OUTPUT_STRIP_TRAILING_WHITESPACE
                 OUTPUT_VARIABLE NB_DIR
             )
             list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
