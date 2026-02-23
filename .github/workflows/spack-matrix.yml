@@ -134,6 +134,31 @@ jobs:
         run: |
           spack env activate ./env
           python -c "import meshio"
+
+  py-mri-toolkit:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.1.0"]
+        spec: ["", "+show+napari"]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-mri-toolkit@${{ matrix.version }} ${{ matrix.spec }}
+
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import mritk"
+  
       
   py-scifem:
     needs: style-check
