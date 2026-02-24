@@ -170,7 +170,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.2.1"]
-        spec: ["", "+mesh"]
+        spec: ["python@3.11:3.11.99", "+mesh python@3.11:3.11.99"]
 
     steps:
       - uses: actions/checkout@v5
