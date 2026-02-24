@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.13'
+          python-version: "3.13"
       - uses: actions/checkout@v5
         with:
           fetch-depth: 2
@@ -35,7 +35,6 @@ jobs:
       - run: chmod +x style_check.sh
       - run: ./style_check.sh HEAD^
 
-
   py-dolfinx-mpc:
     needs: style-check
     runs-on: ubuntu-latest
@@ -44,7 +43,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.10.1", "0.9.3", "0.8.1"]
-        spec: ["", "+numba"]
+        spec: ["", "+numba", "%gcc@13"]
 
     steps:
       - uses: actions/checkout@v5
@@ -53,7 +52,7 @@ jobs:
       - uses: ./spack_repos/.github/actions/test-package
         with:
           spec: py-dolfinx-mpc@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
+          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
 
       - name: Import test
         shell: spack-bash {0}
@@ -69,7 +68,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.4.0"]
-        spec: ["", "+petsc"]
+        spec: ["", "+petsc", "%gcc@13"]
 
     steps:
       - uses: actions/checkout@v5
@@ -78,7 +77,7 @@ jobs:
       - uses: ./spack_repos/.github/actions/test-package
         with:
           spec: py-fenicsx-ii@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
+          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
 
       - name: Import test
         shell: spack-bash {0}
@@ -94,7 +93,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "1.1.0"]
-        spec: ["", "+adios2+h5py+xdmf+vtkhdf+pyvista"]
+        spec: ["", "+adios2+h5py+xdmf+vtkhdf+pyvista", "%gcc@13"]
 
     steps:
       - uses: actions/checkout@v5
@@ -103,14 +102,14 @@ jobs:
       - uses: ./spack_repos/.github/actions/test-package
         with:
           spec: py-io4dolfinx@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
+          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
 
       - name: Import test
         shell: spack-bash {0}
         run: |
           spack env activate ./env
           python -c "import io4dolfinx"
-          
+
   py-meshio:
     needs: style-check
     runs-on: ubuntu-latest
@@ -182,7 +181,7 @@ jobs:
         run: |
           spack env activate ./env
           python -c "import mri2mesh"
-          
+
   py-networks-fenicsx:
     needs: style-check
     runs-on: ubuntu-latest
@@ -191,7 +190,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.2.0"]
-        spec: [""]
+        spec: ["%gcc@13"]
 
     steps:
       - uses: actions/checkout@v5
@@ -206,7 +205,7 @@ jobs:
         run: |
           spack env activate ./env
           python -c "import networks_fenicsx"
-      
+
   py-scifem:
     needs: style-check
     runs-on: ubuntu-latest
@@ -224,7 +223,7 @@ jobs:
       - uses: ./spack_repos/.github/actions/test-package
         with:
           spec: py-scifem@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: 'https://github.com/FEniCS/spack-fenics.git'
+          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
 
       - name: Import test
         shell: spack-bash {0}
