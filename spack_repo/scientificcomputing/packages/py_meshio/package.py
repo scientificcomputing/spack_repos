@@ -31,4 +31,4 @@ class PyMeshio(PythonPackage):
     depends_on("py-rich", type="run")
 
     with when("+xdmf"):
-        depends_on("py-hdf5", type="run")
+        depends_on("py-h5py", type="run")
