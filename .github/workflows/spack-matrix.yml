@@ -43,7 +43,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.10.1", "0.9.3", "0.8.1"]
-        spec: ["^py-petsc4py%gcc@13", "+numba ^pypetsc4py%gcc@13"]
+        spec: ["^py-petsc4py%gcc@13", "+numba ^py-petsc4py%gcc@13"]
 
     steps:
       - uses: actions/checkout@v5
