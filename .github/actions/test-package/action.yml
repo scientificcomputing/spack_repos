@@ -1,22 +1,22 @@
 name: test-spack
-description: 'Builds a spack package from given spack-spec'
+description: "Builds a spack package from given spack-spec"
 inputs:
   spec:
-    description: 'Spack spec syntax'
+    description: "Spack spec syntax"
     required: true
     type: string
   remote_repos:
-    description: 'Space-separated list of remote spack repository URLs to add (e.g., https://github.com/...)'
+    description: "Space-separated list of remote spack repository URLs to add (e.g., https://github.com/...)"
     required: false
-    default: ''
+    default: ""
   local_repo_name:
-    description: 'Name for the local spack repository (e.g., scientificcomputing)'
+    description: "Name for the local spack repository (e.g., scientificcomputing)"
     required: false
-    default: 'scientificcomputing'
+    default: "scientificcomputing"
   local_repo_path:
-    description: 'Relative path from GITHUB_WORKSPACE to the local spack repository'
+    description: "Relative path from GITHUB_WORKSPACE to the local spack repository"
     required: false
-    default: 'spack_repos/spack_repo/scientificcomputing'
+    default: "spack_repos/spack_repo/scientificcomputing"
 runs:
   using: "composite"
   steps:
@@ -50,7 +50,7 @@ runs:
         # Add local repo (Only runs if a path is provided)
         LOCAL_PATH="${{ inputs.local_repo_path }}"
         LOCAL_NAME="${{ inputs.local_repo_name }}"
-        
+
         if [ -n "$LOCAL_PATH" ]; then
           echo "Adding local repo: $GITHUB_WORKSPACE/$LOCAL_PATH"
           if [ -n "$LOCAL_NAME" ]; then
@@ -68,9 +68,9 @@ runs:
     - name: Add cache
       shell: spack-bash {0}
       run: |
-         spack mirror add develop https://binaries.spack.io/develop
-         spack config add "packages:all:require:['os=ubuntu24.04','target=x86_64_v3']"
-         spack buildcache keys --install --trust
+        spack mirror add develop https://binaries.spack.io/develop
+        spack config add "packages:all:require:['os=ubuntu24.04','target=x86_64_v3']"
+        spack buildcache keys --install --trust
 
     - name: Compiler find
       shell: spack-bash {0}
@@ -88,7 +88,7 @@ runs:
       shell: spack-bash {0}
       run: |
         spack -e ./env config add concretizer:unify:true
-        spack -e ./env concretize -j 4
+        spack -e ./env concretize -j 4 --force --fresh
 
     - name: Install
       shell: spack-bash {0}

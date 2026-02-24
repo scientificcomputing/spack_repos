@@ -43,7 +43,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.10.1", "0.9.3", "0.8.1"]
-        spec: ["", "+numba", "%gcc@13"]
+        spec: ["^py-petsc4py%gcc@13", "+numba ^pypetsc4py%gcc@13"]
 
     steps:
       - uses: actions/checkout@v5
@@ -68,7 +68,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.4.0"]
-        spec: ["", "+petsc", "%gcc@13"]
+        spec: ["", "+petsc"]
 
     steps:
       - uses: actions/checkout@v5
@@ -93,7 +93,11 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "1.1.0"]
-        spec: ["", "+adios2+h5py+xdmf+vtkhdf+pyvista", "%gcc@13"]
+        spec:
+          [
+            "^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
+            "+adios2+h5py+xdmf+vtkhdf+pyvista ^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
+          ]
 
     steps:
       - uses: actions/checkout@v5
