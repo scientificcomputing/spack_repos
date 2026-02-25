@@ -26,7 +26,7 @@ class PyMri2mesh(PythonPackage):
 
     depends_on("python@3.10:", when="@main:", type=("build", "run"))
     depends_on("py-packaging")
-   
+
     depends_on("py-pyvista", type="run")
     depends_on("py-numpy", type="run")
     depends_on("py-matplotlib", type="run")
@@ -34,7 +34,7 @@ class PyMri2mesh(PythonPackage):
     depends_on("py-scikit-image", type="run")
     depends_on("py-scipy", type="run")
     depends_on("py-meshio@2.3.5:", type="run")
-    
+
     depends_on("py-setuptools@42:", type="build")
 
     with when("+mesh"):

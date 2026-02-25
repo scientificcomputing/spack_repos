@@ -17,4 +17,3 @@ export SPACK_EDITOR="code --wait"
 ```
 
 Once you have created a new package please have a look at the existing packages in this repository to see if there are any similar ones that you can use as a template for your new package.
-

@@ -1,0 +1,127 @@
+name: test-spack
+description: "Builds a spack package from given spack-spec"
+inputs:
+  spec:
+    description: "Spack spec syntax"
+    required: true
+    type: string
+  remote_repos:
+    description: "Space-separated list of remote spack repository URLs to add (e.g., https://github.com/...)"
+    required: false
+    default: ""
+  local_repo_name:
+    description: "Name for the local spack repository (e.g., scientificcomputing)"
+    required: false
+    default: "scientificcomputing"
+  local_repo_path:
+    description: "Relative path from GITHUB_WORKSPACE to the local spack repository"
+    required: false
+    default: "spack_repos/spack_repo/scientificcomputing"
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies
+      shell: sh
+      run: |
+        apt-get -y update
+        apt-get install -y file bzip2 ca-certificates g++ gcc gfortran git gzip lsb-release patch python3 tar unzip xz-utils zstd
+
+    - name: Set up spack
+      uses: spack/setup-spack@v3
+      with:
+        spack_ref: develop
+
+    - name: Install clang-18
+      shell: sh
+      if: contains(inputs.spec, 'clang@18')
+      run: apt-get install -y clang-18
+
+    - name: Add repos
+      shell: spack-bash {0}
+      run: |
+        # Add remote repos (Handles empty, one, or multiple space-separated URLs)
+        for repo in ${{ inputs.remote_repos }}; do
+          if [ -n "$repo" ]; then
+            echo "Adding remote repo: $repo"
+            spack repo add "$repo"
+          fi
+        done
+
+        # Add local repo (Only runs if a path is provided)
+        LOCAL_PATH="${{ inputs.local_repo_path }}"
+        LOCAL_NAME="${{ inputs.local_repo_name }}"
+
+        if [ -n "$LOCAL_PATH" ]; then
+          echo "Adding local repo: $GITHUB_WORKSPACE/$LOCAL_PATH"
+          if [ -n "$LOCAL_NAME" ]; then
+            spack repo add --name "$LOCAL_NAME" "$GITHUB_WORKSPACE/$LOCAL_PATH"
+          else
+            # Fallback just in case a path is passed without a specific name
+            spack repo add "$GITHUB_WORKSPACE/$LOCAL_PATH"
+          fi
+        fi
+
+        # Verify added repos
+        spack config get repos
+        spack repo list
+
+    - name: Configure OCI Buildcache Mirror
+      shell: spack-bash {0}
+      env:
+        # Pass the GitHub token into the environment so Spack can use it
+        OCI_TOKEN: ${{ github.token }}
+      run: |
+        # Add the GHCR mirror. 
+        # --unsigned: disables GPG signing requirement (safe for private CI caches)
+        spack mirror add \
+          --oci-username ${{ github.actor }} \
+          --oci-password-variable OCI_TOKEN \
+          --unsigned \
+          oci_cache \
+          oci://ghcr.io/${{ github.repository_owner }}/spack-buildcache
+        
+        spack mirror add develop https://binaries.spack.io/develop
+        spack config add "packages:all:require:['os=ubuntu24.04','target=x86_64_v3']"
+        spack buildcache keys --install --trust
+
+    - name: Compiler find
+      shell: spack-bash {0}
+      run: spack compiler find
+
+    - name: Create env
+      shell: spack-bash {0}
+      run: spack env create -d ./env
+
+    - name: Add specs
+      shell: spack-bash {0}
+      run: spack -e ./env add ${{ inputs.spec }}
+
+    - name: Concretize
+      shell: spack-bash {0}
+      run: |
+        spack -e ./env config add concretizer:unify:true
+        spack -e ./env concretize -j 4 --force --fresh
+
+    - name: Install
+      shell: spack-bash {0}
+      run: >
+        spack -e ./env install -j 4 
+        --log-format junit
+        --log-file log.xml
+
+    - name: Push to OCI buildcache
+      shell: spack-bash {0}
+      if: success()
+      env:
+        OCI_TOKEN: ${{ github.token }}
+      run: |
+        echo "Pushing built packages to ghcr.io..."
+        # --update-index: updates the mirror index so future concretizations know the packages are there
+        spack -e ./env buildcache push --unsigned --with-build-dependencies --update-index oci_cache || true
+
+    - name: Upload log
+      if: success() || failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.spec }}-log
+        path: log.xml
