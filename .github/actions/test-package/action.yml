@@ -65,10 +65,26 @@ runs:
         spack config get repos
         spack repo list
 
-    - name: Add cache
+    - name: Restore Spack buildcache
+      uses: actions/cache@v4
+      with:
+        path: ${{ github.workspace }}/spack-cache
+        # Use run_id to ensure a unique key for saving at the end of the run
+        key: spack-cache-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+        # Restore the most recent cache starting with this prefix
+        restore-keys: |
+          spack-cache-${{ runner.os }}-
+
+    - name: Configure Cache Mirrors
       shell: spack-bash {0}
       run: |
+        # Create the cache directory in case actions/cache didn't find a previous one
+        mkdir -p ${{ github.workspace }}/spack-cache
+        
+        # Add the local directory as a mirror with high priority
+        spack mirror add local_cache file://${{ github.workspace }}/spack-cache
         spack mirror add develop https://binaries.spack.io/develop
+        
         spack config add "packages:all:require:['os=ubuntu24.04','target=x86_64_v3']"
         spack buildcache keys --install --trust
 
@@ -96,6 +112,16 @@ runs:
         spack -e ./env install -j 4 
         --log-format junit
         --log-file log.xml
+
+    - name: Push to local buildcache
+      shell: spack-bash {0}
+      if: success()
+      run: |
+        echo "Pushing built packages to local cache..."
+        # -a: pushes dependencies too
+        # --unsigned: don't require GPG keys for local caching
+        # -u: update the mirror index
+        spack -e ./env buildcache push -a --unsigned -u local_cache || true
 
     - name: Upload log
       if: success() || failure()
