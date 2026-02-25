@@ -146,7 +146,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.1.0"]
-        spec: ["", "+show+napari"]
+        spec: ["", "+show"]
 
     steps:
       - uses: actions/checkout@v5
@@ -170,7 +170,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.2.1"]
-        spec: ["python@3.11:3.11.99", "+mesh python@3.11:3.11.99"]
+        spec: ["", "+mesh"]
 
     steps:
       - uses: actions/checkout@v5
