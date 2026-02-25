@@ -116,9 +116,8 @@ runs:
         OCI_TOKEN: ${{ github.token }}
       run: |
         echo "Pushing built packages to ghcr.io..."
-        # -a: pushes dependencies too
-        # -u: updates the mirror index so future concretizations know the packages are there
-        spack -e ./env buildcache push -a --unsigned -u oci_cache || true
+        # --update-index: updates the mirror index so future concretizations know the packages are there
+        spack -e ./env buildcache push --unsigned --with-build-dependencies --update-index oci_cache || true
 
     - name: Upload log
       if: success() || failure()
