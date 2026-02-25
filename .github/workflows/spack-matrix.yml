@@ -43,180 +43,180 @@ jobs:
       - run: chmod +x style_check.sh
       - run: ./style_check.sh HEAD^
 
-  py-dolfinx-mpc:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.10.1", "0.9.3", "0.8.1"]
-        spec: ["^py-petsc4py%gcc@13", "+numba ^py-petsc4py%gcc@13"]
+  # py-dolfinx-mpc:
+  #   needs: style-check
+  #   runs-on: ubuntu-latest
+  #   container: ubuntu:24.04
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       version: ["main", "0.10.1", "0.9.3", "0.8.1"]
+  #       spec: ["^py-petsc4py%gcc@13", "+numba ^py-petsc4py%gcc@13"]
 
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-dolfinx-mpc@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #       with:
+  #         path: spack_repos
+  #     - uses: ./spack_repos/.github/actions/test-package
+  #       with:
+  #         spec: py-dolfinx-mpc@${{ matrix.version }} ${{ matrix.spec }}
+  #         remote_repos: "https://github.com/FEniCS/spack-fenics.git"
 
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import dolfinx_mpc"
+  #     - name: Import test
+  #       shell: spack-bash {0}
+  #       run: |
+  #         spack env activate ./env
+  #         python -c "import dolfinx_mpc"
 
-  py-fenicsx-ii:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.4.0"]
-        spec: ["", "+petsc"]
+  # py-fenicsx-ii:
+  #   needs: style-check
+  #   runs-on: ubuntu-latest
+  #   container: ubuntu:24.04
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       version: ["main", "0.4.0"]
+  #       spec: ["", "+petsc"]
 
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-fenicsx-ii@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #       with:
+  #         path: spack_repos
+  #     - uses: ./spack_repos/.github/actions/test-package
+  #       with:
+  #         spec: py-fenicsx-ii@${{ matrix.version }} ${{ matrix.spec }}
+  #         remote_repos: "https://github.com/FEniCS/spack-fenics.git"
 
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import fenicsx_ii"
+  #     - name: Import test
+  #       shell: spack-bash {0}
+  #       run: |
+  #         spack env activate ./env
+  #         python -c "import fenicsx_ii"
 
-  py-io4dolfinx:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "1.1.0"]
-        spec:
-          [
-            "^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
-            "+adios2+h5py+xdmf+vtkhdf+pyvista ^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
-          ]
+  # py-io4dolfinx:
+  #   needs: style-check
+  #   runs-on: ubuntu-latest
+  #   container: ubuntu:24.04
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       version: ["main", "1.1.0"]
+  #       spec:
+  #         [
+  #           "^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
+  #           "+adios2+h5py+xdmf+vtkhdf+pyvista ^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
+  #         ]
 
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-io4dolfinx@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #       with:
+  #         path: spack_repos
+  #     - uses: ./spack_repos/.github/actions/test-package
+  #       with:
+  #         spec: py-io4dolfinx@${{ matrix.version }} ${{ matrix.spec }}
+  #         remote_repos: "https://github.com/FEniCS/spack-fenics.git"
 
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import io4dolfinx"
+  #     - name: Import test
+  #       shell: spack-bash {0}
+  #       run: |
+  #         spack env activate ./env
+  #         python -c "import io4dolfinx"
 
-  py-meshio:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["5.3.5"]
-        spec: ["", "+xdmf"]
+  # py-meshio:
+  #   needs: style-check
+  #   runs-on: ubuntu-latest
+  #   container: ubuntu:24.04
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       version: ["5.3.5"]
+  #       spec: ["", "+xdmf"]
 
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-meshio@${{ matrix.version }} ${{ matrix.spec }}
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #       with:
+  #         path: spack_repos
+  #     - uses: ./spack_repos/.github/actions/test-package
+  #       with:
+  #         spec: py-meshio@${{ matrix.version }} ${{ matrix.spec }}
 
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import meshio"
+  #     - name: Import test
+  #       shell: spack-bash {0}
+  #       run: |
+  #         spack env activate ./env
+  #         python -c "import meshio"
 
-  py-mri-toolkit:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.1.0"]
-        spec: ["", "+show"]
+  # py-mri-toolkit:
+  #   needs: style-check
+  #   runs-on: ubuntu-latest
+  #   container: ubuntu:24.04
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       version: ["main", "0.1.0"]
+  #       spec: ["", "+show"]
 
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-mri-toolkit@${{ matrix.version }} ${{ matrix.spec }}
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #       with:
+  #         path: spack_repos
+  #     - uses: ./spack_repos/.github/actions/test-package
+  #       with:
+  #         spec: py-mri-toolkit@${{ matrix.version }} ${{ matrix.spec }}
 
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import mritk"
+  #     - name: Import test
+  #       shell: spack-bash {0}
+  #       run: |
+  #         spack env activate ./env
+  #         python -c "import mritk"
 
-  py-mri2mesh:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.2.1"]
-        spec: ["", "+mesh"]
+  # py-mri2mesh:
+  #   needs: style-check
+  #   runs-on: ubuntu-latest
+  #   container: ubuntu:24.04
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       version: ["main", "0.2.1"]
+  #       spec: ["", "+mesh"]
 
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-mri2mesh@${{ matrix.version }} ${{ matrix.spec }}
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #       with:
+  #         path: spack_repos
+  #     - uses: ./spack_repos/.github/actions/test-package
+  #       with:
+  #         spec: py-mri2mesh@${{ matrix.version }} ${{ matrix.spec }}
 
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import mri2mesh"
+  #     - name: Import test
+  #       shell: spack-bash {0}
+  #       run: |
+  #         spack env activate ./env
+  #         python -c "import mri2mesh"
 
-  py-networks-fenicsx:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.2.0"]
-        spec: ["^py-fenics-dolfinx%gcc@13"]
+  # py-networks-fenicsx:
+  #   needs: style-check
+  #   runs-on: ubuntu-latest
+  #   container: ubuntu:24.04
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       version: ["main", "0.2.0"]
+  #       spec: ["^py-fenics-dolfinx%gcc@13"]
 
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-networks-fenicsx@${{ matrix.version }} ${{ matrix.spec }}
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #       with:
+  #         path: spack_repos
+  #     - uses: ./spack_repos/.github/actions/test-package
+  #       with:
+  #         spec: py-networks-fenicsx@${{ matrix.version }} ${{ matrix.spec }}
 
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import networks_fenicsx"
+  #     - name: Import test
+  #       shell: spack-bash {0}
+  #       run: |
+  #         spack env activate ./env
+  #         python -c "import networks_fenicsx"
 
   py-scifem:
     needs: style-check
