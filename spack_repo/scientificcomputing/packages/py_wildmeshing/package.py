@@ -22,9 +22,9 @@ class PyWildmeshing(PythonPackage):
     version("main", branch="main", submodules=True)
     version("0.4", commit="bc835076c1e2b2c92fe5364f5bc7f4119e6c5fd3", submodules=True)
 
-    depends_on("python@3.10:", type=("build", "run"))
+    depends_on("python", type=("build", "run"))
     depends_on("py-numpy", type="run")
-    depends_on("py-setuptools@42:", type="build")
+    depends_on("py-setuptools@:80.0", type="build")
     depends_on("py-svgwrite", type="run")
     depends_on("gmp", type="build")
 
