@@ -20,6 +20,7 @@ class PyDolfinxMpc(PythonPackage):
     license("MIT", checked_by="jorgensd")
 
     version("main", branch="main")
+    version("0.10.2", sha256="dd9b4ec651e725587b8321cdf56ae3a9fb41a143416c287ae5a098b2bb743a49")
     version("0.10.1", sha256="b44acaa6ee34672c792980ac9c544d46c6c01ab4846f354f4724da5eaeaead6e")
     version("0.9.3", sha256="efa312cc498e428aab44acccc9bb0c74c200eda005742de7778c8e68fa84e8df")
     version("0.8.1", sha256="e0254b4a1c9c1456583c1415821946b11b0b2e48dbfee6558da2bbedfe78b461")
