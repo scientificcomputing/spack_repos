@@ -65,9 +65,21 @@ runs:
         spack config get repos
         spack repo list
 
-    - name: Add cache
+    - name: Configure OCI Buildcache Mirror
       shell: spack-bash {0}
+      env:
+        # Pass the GitHub token into the environment so Spack can use it
+        OCI_TOKEN: ${{ github.token }}
       run: |
+        # Add the GHCR mirror. 
+        # --unsigned: disables GPG signing requirement (safe for private CI caches)
+        spack mirror add \
+          --oci-username ${{ github.actor }} \
+          --oci-password-variable OCI_TOKEN \
+          --unsigned \
+          oci_cache \
+          oci://ghcr.io/${{ github.repository_owner }}/spack-buildcache
+        
         spack mirror add develop https://binaries.spack.io/develop
         spack config add "packages:all:require:['os=ubuntu24.04','target=x86_64_v3']"
         spack buildcache keys --install --trust
@@ -96,6 +108,16 @@ runs:
         spack -e ./env install -j 4 
         --log-format junit
         --log-file log.xml
+
+    - name: Push to OCI buildcache
+      shell: spack-bash {0}
+      if: success()
+      env:
+        OCI_TOKEN: ${{ github.token }}
+      run: |
+        echo "Pushing built packages to ghcr.io..."
+        # --update-index: updates the mirror index so future concretizations know the packages are there
+        spack -e ./env buildcache push --unsigned --with-build-dependencies --update-index oci_cache || true
 
     - name: Upload log
       if: success() || failure()
