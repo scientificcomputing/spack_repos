@@ -9,6 +9,11 @@ on:
   schedule:
     - cron: "0 2 * * MON" # weekly, Mondays 0200
 
+permissions:
+  contents: read
+  packages: write
+
+
 jobs:
   style-check:
     name: ✨
