@@ -7,9 +7,11 @@ from spack_repo.builtin.build_systems.python import PythonPackage
 from spack.package import *
 
 
-class FenicsxIi(PythonPackage):
-    """FEniCSx_ii is an extension of FEniCSx that allows users to work with non-conforming 3D-1D meshes.
-    The core algorithm is based on the framework proposed by Kuchta 2021 and implemented in FEniCS_ii.
+class PyFenicsxIi(PythonPackage):
+    """FEniCSx_ii is an extension of FEniCSx that allows
+    users to work with non-conforming 3D-1D meshes.
+    The core algorithm is based on the framework proposed by
+    Kuchta 2021 and implemented in FEniCS_ii.
     """
 
     homepage = "https://scientificcomputing.github.io/fenicsx_ii/"
@@ -22,7 +24,7 @@ class FenicsxIi(PythonPackage):
 
     version("main", branch="main")
     version("0.4.0", sha256="e3ec634ccb34e70c77f39bd3f7498910139f57653a09ef4278461f34bd72d9d1")
-    
+
     variant("petsc", default=True, description="PETSc support")
 
     depends_on("python@3.10:", type=("build", "run"))
