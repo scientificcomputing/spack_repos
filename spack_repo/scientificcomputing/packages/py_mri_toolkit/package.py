@@ -38,10 +38,7 @@ class PyMriToolkit(PythonPackage):
     maintainers("finsberg", "cdaversin")
 
     version("main", branch="main")
-    version(
-        "0.1.0",
-        sha256="729d6094ed6edbe513905cecb4609b5238d04e360c68c632ec32fba97bbd80b9",
-    )
+    version("0.1.0", sha256="729d6094ed6edbe513905cecb4609b5238d04e360c68c632ec32fba97bbd80b9")
 
     # FIXME: Only add the python/pip/wheel dependencies if you need specific versions
     # or need to change the dependency type. Generic python/pip/wheel dependencies are
@@ -49,19 +46,20 @@ class PyMriToolkit(PythonPackage):
     depends_on("python@3.10:", type=("build", "run"))
 
     depends_on("py-setuptools@61.2:", type="build")
-    depends_on("py-tqdm", type="run")
-    depends_on("py-numpy", type="run")
-    depends_on("py-rich-argparse", type="run")
-    depends_on("py-nibabel", type="run")
-    depends_on("py-pandas", type="run")
-    depends_on("py-scipy", type="run")
+    depends_on("py-tqdm", type=("build", "run"))
+    depends_on("py-numpy", type=("build", "run"))
+    depends_on("py-rich-argparse", type=("build", "run"))
+    depends_on("py-nibabel", type=("build", "run"))
+    depends_on("py-pandas", type=("build", "run"))
+    depends_on("py-scipy", type=("build", "run"))
 
     variant("show", default=True, description="Show images in the terminal")
     with when("+show"):
-        depends_on("py-pillow", type="run")
-        depends_on("py-matplotlib", type="run")
-        depends_on("py-textual-image", type="run")
+        depends_on("py-pillow", type=("build", "run"))
+        depends_on("py-matplotlib", type=("build", "run"))
+        depends_on("py-textual-image", type=("build", "run"))
 
     variant("napari", default=True, description="Napari support")
     with when("+napari"):
-        depends_on("py-napari", type="run")
+        depends_on("py-napari", type=("build", "run"))
+        depends_on("sqlite@:3.45.3", type="run")
