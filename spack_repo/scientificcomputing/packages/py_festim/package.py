@@ -12,9 +12,7 @@ class PyFestim(PythonPackage):
     It simulates the diffusion and trapping of hydrogen, coupled to heat transfer with FEniCS."""
 
     homepage = "https://festim.readthedocs.io/en/latest/"
-    url = (
-        "https://github.com/festim-dev/FESTIM/archive/refs/tags/v2.0-beta.2post1.tar.gz"
-    )
+    url = "https://github.com/festim-dev/FESTIM/archive/refs/tags/v2.0-beta.2post1.tar.gz"
     git = "https://github.com/festim-dev/FESTIM.git"
 
     maintainers("jorgensd")
@@ -37,11 +35,11 @@ class PyFestim(PythonPackage):
 
     depends_on("py-fenics-dolfinx@0.10+petsc4py", when="@2.0-beta.2post1:", type="run")
     depends_on("py-fenics-dolfinx@main+petsc4py", when="@main", type="run")
-   
+
     depends_on("fenics-dolfinx+adios2", type="run")
-   
+
     depends_on("petsc+mumps", type="run")
-   
+
     depends_on("py-numpy", type="run")
     depends_on("py-sympy", type="run")
     depends_on("py-tqdm", type="run")
