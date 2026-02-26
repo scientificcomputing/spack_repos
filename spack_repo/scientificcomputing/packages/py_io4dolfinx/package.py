@@ -44,7 +44,9 @@ class PyIo4dolfinx(PythonPackage):
 
     with when("+adios2"):
         depends_on("adios2@2.9:+python+hdf5+mpi", type=("build", "run"))
-        depends_on("hdf5@1.12:", type="build")  # NOTE: Remove when https://github.com/spack/spack-packages/issues/3566 is resolved
+        depends_on(
+            "hdf5@1.12:", type="build"
+        )  # NOTE: Remove when https://github.com/spack/spack-packages/issues/3566 is resolved
     with when("+h5py"):
         depends_on("py-h5py+mpi", type="run")
 

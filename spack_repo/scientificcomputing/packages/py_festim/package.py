@@ -39,7 +39,10 @@ class PyFestim(PythonPackage):
     depends_on("py-fenics-dolfinx@main+petsc4py", when="@main", type="run")
    
     depends_on("fenics-dolfinx+adios2", type="run")
-    depends_on("hdf5@1.12:", type="build")  # NOTE: Remove when https://github.com/spack/spack-packages/issues/3566 is resolved
+
+    depends_on(
+        "hdf5@1.12:", type="build"
+        )  # NOTE: Remove when https://github.com/spack/spack-packages/issues/3566 is resolved
     depends_on("petsc+mumps", type="run")
    
     depends_on("py-numpy", type="run")
