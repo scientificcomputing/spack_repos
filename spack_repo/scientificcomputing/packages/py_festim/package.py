@@ -8,8 +8,10 @@ from spack.package import *
 
 
 class PyFestim(PythonPackage):
-    """FESTIM (Finite Elements Simulation of Tritium in Materials) is a tool for modeling hydrogen transport in materials.
-    It simulates the diffusion and trapping of hydrogen, coupled to heat transfer with FEniCS."""
+    """FESTIM (Finite Elements Simulation of Tritium in Materials)
+    is a tool for modeling hydrogen transport in materials.
+    It simulates the diffusion and trapping of hydrogen, coupled to
+    heat transfer with FEniCS."""
 
     homepage = "https://festim.readthedocs.io/en/latest/"
     url = "https://github.com/festim-dev/FESTIM/archive/refs/tags/v2.0-beta.2post1.tar.gz"
