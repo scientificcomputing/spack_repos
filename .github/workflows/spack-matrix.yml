@@ -26,11 +26,11 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 2
       - name: Fetch Spack CI scripts
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: spack/spack
           ref: develop
@@ -54,7 +54,7 @@ jobs:
   #       spec: ["^py-petsc4py%gcc@13", "+numba ^py-petsc4py%gcc@13"]
 
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #       with:
   #         path: spack_repos
   #     - uses: ./spack_repos/.github/actions/test-package
@@ -79,7 +79,7 @@ jobs:
   #       spec: ["", "+petsc"]
 
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #       with:
   #         path: spack_repos
   #     - uses: ./spack_repos/.github/actions/test-package
@@ -108,7 +108,7 @@ jobs:
   #         ]
 
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #       with:
   #         path: spack_repos
   #     - uses: ./spack_repos/.github/actions/test-package
@@ -133,7 +133,7 @@ jobs:
   #       spec: ["", "+xdmf"]
 
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #       with:
   #         path: spack_repos
   #     - uses: ./spack_repos/.github/actions/test-package
@@ -157,7 +157,7 @@ jobs:
   #       spec: ["", "+show"]
 
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #       with:
   #         path: spack_repos
   #     - uses: ./spack_repos/.github/actions/test-package
@@ -181,7 +181,7 @@ jobs:
   #       spec: ["", "+mesh"]
 
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #       with:
   #         path: spack_repos
   #     - uses: ./spack_repos/.github/actions/test-package
@@ -194,29 +194,29 @@ jobs:
   #         spack env activate ./env
   #         python -c "import mri2mesh"
 
-  # py-networks-fenicsx:
-  #   needs: style-check
-  #   runs-on: ubuntu-latest
-  #   container: ubuntu:24.04
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       version: ["main", "0.2.0"]
-  #       spec: ["^py-fenics-dolfinx%gcc@13"]
+  py-networks-fenicsx:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.2.0"]
+        spec: ["^py-fenics-dolfinx%gcc@13"]
 
-  #   steps:
-  #     - uses: actions/checkout@v5
-  #       with:
-  #         path: spack_repos
-  #     - uses: ./spack_repos/.github/actions/test-package
-  #       with:
-  #         spec: py-networks-fenicsx@${{ matrix.version }} ${{ matrix.spec }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-networks-fenicsx@${{ matrix.version }} ${{ matrix.spec }}
 
-  #     - name: Import test
-  #       shell: spack-bash {0}
-  #       run: |
-  #         spack env activate ./env
-  #         python -c "import networks_fenicsx"
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import networks_fenicsx"
 
   py-scifem:
     needs: style-check
@@ -229,7 +229,7 @@ jobs:
         spec: ["+adios2+petsc+biomed+hdf5 ^petsc+mumps"]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           path: spack_repos
       - uses: ./spack_repos/.github/actions/test-package
