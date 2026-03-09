@@ -25,7 +25,7 @@ from spack.package import *
 
 
 class PyGotranx(PythonPackage):
-    """Next generate ODE translator"""
+    """General ODE translator"""
 
     homepage = "https://finsberg.github.io/gotranx"
 
@@ -39,6 +39,7 @@ class PyGotranx(PythonPackage):
     # the license, set checked_by to your Github username.
     license("MIT", checked_by="finsberg")
 
+    version("main", branch="main")
     version("1.5.0", sha256="5d9abfc419aa56ffaa65c96e8a50283399e918606249c0651afe6f6c3216957a")
     version("1.4.0", sha256="47d79462d5219cefe4d6346a68292f7504a11e46512f69dcd300a6413d1084e0")
 
