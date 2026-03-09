@@ -41,6 +41,9 @@ class PyScifem(PythonPackage):
     depends_on("py-scikit-build-core+pyproject", type="build")
     depends_on("py-setuptools@42:", type="build")
     depends_on("cmake@3.21:", type="build")
+
+    depends_on("py-scipy", when="@main", type="run")
+
     depends_on("fenics-dolfinx@main", when="@main", type=("build", "link"))
     depends_on("fenics-dolfinx@0.10:", when="@0.16:", type=("build", "link"))
     depends_on("fenics-dolfinx@0.9:", when="@0.4:", type=("build", "link"))

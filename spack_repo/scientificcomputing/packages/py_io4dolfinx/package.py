@@ -8,9 +8,11 @@ from spack.package import *
 
 
 class PyIo4dolfinx(PythonPackage):
-    """io4dolfinx is an extension for py-fenics-dolfinx that provides advanced input/output capabilities.
-    It focuses on N-to-M checkpointing (writing data on N processors, reading on M processors)
-    and supports reading/writing various mesh formats using interchangeable backends.
+    """io4dolfinx is an extension for py-fenics-dolfinx that
+    provides advanced input/output capabilities.
+    It focuses on N-to-M checkpointing (writing data on N processors,
+    reading on M processors) and supports reading/writing various mesh
+    formats using interchangeable backends.
     """
 
     homepage = "https://scientificcomputing.github.io/io4dolfinx/"
@@ -23,7 +25,7 @@ class PyIo4dolfinx(PythonPackage):
 
     version("main", branch="main")
     version("1.1.0", sha256="3641d72083858d5ae0672a16cb11dc6fd792a117cbc2281be307ffc47a91fcb2")
-   
+
     variant("adios2", default=True, description="ADIOS2 backend support")
     variant("h5py", default=True, description="H5Py backend support")
     variant("xdmf", default=True, description="XDMF backend support")
@@ -41,8 +43,10 @@ class PyIo4dolfinx(PythonPackage):
     depends_on("py-setuptools@42:", type="build")
 
     with when("+adios2"):
-        depends_on("adios2+python+hdf5", type=("build", "run"))
-
+        depends_on("adios2@2.9:+python+hdf5+mpi", type=("build", "run"))
+        depends_on(
+            "hdf5@1.12:", type="build"
+        )  # NOTE: Remove when https://github.com/spack/spack-packages/issues/3566 is resolved
     with when("+h5py"):
         depends_on("py-h5py+mpi", type="run")
 

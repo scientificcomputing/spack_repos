@@ -8,8 +8,7 @@ from spack.package import *
 
 
 class PyNetworksFenicsx(PythonPackage):
-    """Solving PDEs on 1D branching networks in FEniCSx
-    """
+    """Solving PDEs on 1D branching networks in FEniCSx"""
 
     homepage = "https://scientificcomputing.github.io/networks_fenicsx/"
     url = "https://github.com/scientificcomputing/networks_fenicsx/archive/refs/tags/v0.2.0.tar.gz"
@@ -21,7 +20,7 @@ class PyNetworksFenicsx(PythonPackage):
 
     version("main", branch="main")
     version("0.2.0", sha256="ddc680b73723eb54f18d6119343071381f5f73cac7ebe01fe50e205a59afe2f3")
-    
+
     depends_on("python@3.10:", type=("build", "run"))
 
     depends_on("py-setuptools@42:", type="build")

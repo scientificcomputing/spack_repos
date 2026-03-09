@@ -1,0 +1,44 @@
+line-length = 99
+# Defines the source directory so Ruff can accurately detect first-party imports
+src = ["lib"]
+# Mimics Black's include regex for repos/spack_repo and tests
+include = [
+    "repos/spack_repo/**/*.py",
+    "repos/spack_repo/**/*.pyi",
+    "tests/**/*.py",
+    "tests/**/*.pyi"
+]
+
+# This is the Spack package API... (Keep your existing builtins array exactly as is)
+builtins = [
+    "configure",
+    "cscript",
+    "windows_sfn",
+]
+
+[format]
+# Changed to true to match your old [tool.black] settings
+skip-magic-trailing-comma = true
+
+[lint]
+extend-select = ["I"] # Enables the isort rules
+ignore = ["E731", "E203", "F403", "F811"]
+
+[lint.isort]
+split-on-trailing-comma = false
+section-order = [
+  "future",
+  "standard-library",
+  "third-party",
+  "spack",
+  "first-party",
+  "local-folder",
+]
+
+[lint.isort.sections]
+spack = ["spack"]
+
+[lint.per-file-ignores]
+"var/spack/*/package.py" = ["F403", "F405", "F811", "F821"]
+"*-ci-package.py" = ["F403", "F405", "F821"]
+"package.py" = ["F403", "F405", "F821"]

@@ -61,3 +61,4 @@ class PyMriToolkit(PythonPackage):
     variant("napari", default=True, description="Napari support")
     with when("+napari"):
         depends_on("py-napari", type=("build", "run"))
+        depends_on("sqlite@:3.45.3", type="run")
