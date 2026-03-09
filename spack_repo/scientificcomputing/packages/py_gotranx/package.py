@@ -48,17 +48,17 @@ class PyGotranx(PythonPackage):
     depends_on("py-setuptools@61.2:", type="build")
 
     # Core dependencies
-    depends_on("py-attrs", type=("build", "run"))
-    depends_on("py-lark", type=("build", "run"))
-    depends_on("py-pint", type=("build", "run"))
-    depends_on("py-rich-click", type=("build", "run"))
-    depends_on("py-structlog", type=("build", "run"))
-    depends_on("py-sympy", type=("build", "run"))
-    depends_on("py-typer", type=("build", "run"))
-    depends_on("py-myokit", type=("build", "run"))
+    depends_on("py-attrs", type="run")
+    depends_on("py-lark", type="run")
+    depends_on("py-pint", type="run")
+    depends_on("py-rich-click", type="run")
+    depends_on("py-structlog", type="run")
+    depends_on("py-sympy", type="run")
+    depends_on("py-typer", type="run")
+    depends_on("py-myokit", type="run")
 
     # click < 8.2
-    depends_on("py-click@:8.1", type=("build", "run"))
+    depends_on("py-click@:8.1", type="run")
 
     # toml ; python_version < '3.11'
-    depends_on("py-toml", type=("build", "run"), when="^python@:3.10")
+    depends_on("py-toml", type="run", when="^python@:3.10")
