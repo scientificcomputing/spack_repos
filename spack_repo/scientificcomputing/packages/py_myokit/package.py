@@ -47,7 +47,7 @@ class PyMyokit(PythonPackage):
     depends_on("py-setuptools@64.0:", type=("build", "run"))
 
     # Core dependencies
-    depends_on("py-configparser", type="run")
-    depends_on("py-lxml", type="run")
-    depends_on("py-matplotlib@2.2:", type="run")
-    depends_on("py-numpy", type="run")
+    depends_on("py-configparser", type=("build", "run"))
+    depends_on("py-lxml", type=("build", "run"))
+    depends_on("py-matplotlib@2.2:", type=("build", "run"))
+    depends_on("py-numpy", type=("build", "run"))
