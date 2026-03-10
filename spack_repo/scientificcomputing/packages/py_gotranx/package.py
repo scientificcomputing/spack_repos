@@ -40,8 +40,7 @@ class PyGotranx(PythonPackage):
     license("MIT", checked_by="finsberg")
 
     version("main", branch="main")
-    version("1.5.0", sha256="5d9abfc419aa56ffaa65c96e8a50283399e918606249c0651afe6f6c3216957a")
-    version("1.4.0", sha256="47d79462d5219cefe4d6346a68292f7504a11e46512f69dcd300a6413d1084e0")
+    version("1.5.1", sha256="5d9abfc419aa56ffaa65c96e8a50283399e918606249c0651afe6f6c3216957a")
 
     # Python version and Build backend
     depends_on("python@3.9:", type=("build", "run"))
@@ -58,7 +57,7 @@ class PyGotranx(PythonPackage):
     depends_on("py-myokit", type=("build", "run"))
 
     # click < 8.2
-    depends_on("py-click@:8.1", type=("build", "run"))
+    depends_on("py-click", type=("build", "run"))
 
     # toml ; python_version < '3.11'
     depends_on("py-toml", type=("build", "run"), when="^python@:3.10")
