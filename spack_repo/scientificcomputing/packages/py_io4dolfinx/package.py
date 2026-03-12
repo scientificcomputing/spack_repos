@@ -24,6 +24,7 @@ class PyIo4dolfinx(PythonPackage):
     license("MIT", checked_by="jorgensd")
 
     version("main", branch="main")
+    version("1.1.2", sha256="3641d72083858d5ae0672a16cb11dc6fd792a117cbc2281be307ffc47a91fcb2")
     version("1.1.0", sha256="3641d72083858d5ae0672a16cb11dc6fd792a117cbc2281be307ffc47a91fcb2")
 
     variant("adios2", default=True, description="ADIOS2 backend support")
