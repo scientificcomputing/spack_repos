@@ -29,7 +29,7 @@ class PyGotranx(PythonPackage):
 
     homepage = "https://finsberg.github.io/gotranx"
 
-    url = "https://github.com/finsberg/gotranx/archive/refs/tags/v1.5.0.tar.gz"
+    url = "https://github.com/finsberg/gotranx/archive/refs/tags/v1.5.1.tar.gz"
 
     # notify when the package is updated.
     maintainers("finsberg")
@@ -40,7 +40,7 @@ class PyGotranx(PythonPackage):
     license("MIT", checked_by="finsberg")
 
     version("main", branch="main")
-    version("1.5.1", sha256="5d9abfc419aa56ffaa65c96e8a50283399e918606249c0651afe6f6c3216957a")
+    version("1.5.1", sha256="5386876d6cd6f4465a8288a27a7fd44a98116e5b7887173578873371a6a4d3a6")
 
     # Python version and Build backend
     depends_on("python@3.9:", type=("build", "run"))
@@ -53,7 +53,7 @@ class PyGotranx(PythonPackage):
     depends_on("py-rich-click", type=("build", "run"))
     depends_on("py-structlog", type=("build", "run"))
     depends_on("py-sympy", type=("build", "run"))
-    depends_on("py-typer", type=("build", "run"))
+    depends_on("py-typer@0.15.4:", type=("build", "run"))
     depends_on("py-myokit", type=("build", "run"))
 
     # click < 8.2

@@ -24,12 +24,12 @@ from spack_repo.builtin.build_systems.python import PythonPackage
 from spack.package import *
 
 
-class PyMyokit(PythonPackage):
-    """tool for modeling and simulation of cardiac cellular electrophysiology"""
+class PyStructlog(PythonPackage):
+    """General ODE translator"""
 
-    homepage = "https://github.com/myokit/myokit"
+    homepage = "https://github.com/hynek/structlog"
 
-    url = "https://github.com/myokit/myokit/archive/refs/tags/v1.39.1.tar.gz"
+    url = "https://github.com/hynek/structlog/archive/refs/tags/25.5.0.tar.gz"
 
     # notify when the package is updated.
     maintainers("finsberg")
@@ -40,14 +40,12 @@ class PyMyokit(PythonPackage):
     license("MIT", checked_by="finsberg")
 
     version("main", branch="main")
-    version("1.39.1", sha256="8282b145cd18eb8f2efa517591716d69ab0d6ec18dd09db9a9fab6a0fb39618b")
+    version("25.5.0", sha256="ca447e91f03a18b3ae1f1917342c023091e923418409e19cfe67b90dbdce2694")
 
     # Python version and Build backend
     depends_on("python@3.9:", type=("build", "run"))
-    depends_on("py-setuptools@64.0:", type=("build", "run"))
+    depends_on("py-hatchling", type="build")
+    depends_on("py-hatch-vcs", type="build")
+    depends_on("py-hatch-fancy-pypi-readme@22.8.0:", type="build")
 
-    # Core dependencies
-    depends_on("py-configparser", type=("build", "run"))
-    depends_on("py-lxml", type=("build", "run"))
-    depends_on("py-matplotlib@2.2:", type=("build", "run"))
-    depends_on("py-numpy", type=("build", "run"))
+    depends_on("py-typing-extensions", type=("build", "run"), when="^python@:3.11")
