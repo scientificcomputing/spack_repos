@@ -25,9 +25,8 @@ from spack.package import *
 
 
 class PyMriToolkit(PythonPackage):
-    """FIXME: Put a proper description of your package here."""
+    """MRI-toolkit provides a set of features dedicated to human MRI data post-processing"""
 
-    # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://scientificcomputing.github.io/mri-toolkit"
     git = "https://github.com/scientificcomputing/mri-toolkit.git"
 
