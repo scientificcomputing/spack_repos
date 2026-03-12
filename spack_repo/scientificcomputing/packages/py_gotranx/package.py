@@ -28,7 +28,7 @@ class PyGotranx(PythonPackage):
     """General ODE translator"""
 
     homepage = "https://finsberg.github.io/gotranx"
-
+    git = "https://github.com/finsberg/gotranx.git"
     url = "https://github.com/finsberg/gotranx/archive/refs/tags/v1.5.1.tar.gz"
 
     # notify when the package is updated.
