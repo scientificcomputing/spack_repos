@@ -19,7 +19,7 @@ class PyFenicsxBeat(PythonPackage):
     license("MIT", checked_by="finsberg")
 
     version("main", branch="main")
-    version("0.2.0", sha256="7c8ac51568aab8fbe0292d3f1fe57b65faba6ee15f1298c86732324b28913511")
+    version("0.2.4", sha256="7c8ac51568aab8fbe0292d3f1fe57b65faba6ee15f1298c86732324b28913511")
 
     depends_on("python@3.10:", type=("build", "run"))
 
