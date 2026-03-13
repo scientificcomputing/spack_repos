@@ -52,6 +52,9 @@ class PyMriToolkit(PythonPackage):
     depends_on("py-nibabel", type=("build", "run"))
     depends_on("py-pandas", type=("build", "run"))
     depends_on("py-scipy", type=("build", "run"))
+    depends_on("py-scikit-image", type=("build", "run"))
+    depends_on("py-pydicom", type=("build", "run"))
+    depends_on("dcm2niix", type="run")
 
     variant("show", default=False, description="Show images in the terminal")
     with when("+show"):
