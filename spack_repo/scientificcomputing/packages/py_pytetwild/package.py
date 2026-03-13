@@ -7,7 +7,7 @@ from spack_repo.builtin.build_systems.python import PythonPackage
 from spack.package import *
 
 
-class PyTetwild(PythonPackage):
+class PyPytetwild(PythonPackage):
     """Python interface to tetrahedralize using ftetwild"""
 
     homepage = "https://github.com/pyvista/pytetwild"

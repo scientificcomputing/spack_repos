@@ -20,23 +20,22 @@ class PyMri2mesh(PythonPackage):
     license("MIT", checked_by="jorgensd")
 
     version("main", branch="main")
-    version("0.2.1", sha256="4aae1d4555b134d0827e9feaad685647cbc52cde2ae2eaf12a231e687603c09a")
+    version("0.3.0", sha256="8b8091dc92264d3fcda3c23a897d9b65a50befc6a294dd4a157ec3a06734f4b4")
 
     variant("mesh", default=True, description="Support meshing")
 
     depends_on("python@3.10:", when="@main:", type=("build", "run"))
-    depends_on("py-packaging")
-
-    depends_on("py-pyvista", type="run")
-    depends_on("py-numpy", type="run")
-    depends_on("py-matplotlib", type="run")
-    depends_on("py-nibabel", type="run")
-    depends_on("py-scikit-image", type="run")
-    depends_on("py-scipy", type="run")
-    depends_on("py-meshio@2.3.5:", type="run")
-
     depends_on("py-setuptools@42:", type="build")
 
+    depends_on("py-packaging", type=("build", "run"))
+    depends_on("py-pyvista", type=("build", "run"))
+    depends_on("py-numpy", type=("build", "run"))
+    depends_on("py-matplotlib", type=("build", "run"))
+    depends_on("py-nibabel", type=("build", "run"))
+    depends_on("py-scikit-image", type=("build", "run"))
+    depends_on("py-scipy", type=("build", "run"))
+    depends_on("py-meshio@2.3.5:", type=("build", "run"))
+
     with when("+mesh"):
-        depends_on("py-wildmeshing", type="run")
-        depends_on("py-h5py+mpi", type="run")
+        depends_on("py-pytetwild", type=("build", "run"))
+        depends_on("py-h5py+mpi", type=("build", "run"))

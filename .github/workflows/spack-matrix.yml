@@ -170,29 +170,29 @@ jobs:
           spack env activate ./env
           python -c "import mritk"
 
-  # py-mri2mesh:
-  #   needs: style-check
-  #   runs-on: ubuntu-latest
-  #   container: ubuntu:24.04
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       version: ["main", "0.2.1"]
-  #       spec: ["", "+mesh"]
+  py-mri2mesh:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.3.0"]
+        spec: ["", "+mesh"]
 
-  #   steps:
-  #     - uses: actions/checkout@v6
-  #       with:
-  #         path: spack_repos
-  #     - uses: ./spack_repos/.github/actions/test-package
-  #       with:
-  #         spec: py-mri2mesh@${{ matrix.version }} ${{ matrix.spec }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-mri2mesh@${{ matrix.version }} ${{ matrix.spec }}
 
-  #     - name: Import test
-  #       shell: spack-bash {0}
-  #       run: |
-  #         spack env activate ./env
-  #         python -c "import mri2mesh"
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import mri2mesh"
 
   py-networks-fenicsx:
     needs: style-check
