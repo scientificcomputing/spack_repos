@@ -252,6 +252,28 @@ jobs:
           spack cd py-scifem@${{ matrix.version }} ${{ matrix.spec }}
           python -m pytest
 
+  py-fenicsx-beat:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.2.4"]
+        spec: ["^py-fenics-dolfinx%gcc@13"]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-fenicsx-beat@${{ matrix.version }} ${{ matrix.spec }}
+
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import beat"
 
   py-gotranx:
     needs: style-check
