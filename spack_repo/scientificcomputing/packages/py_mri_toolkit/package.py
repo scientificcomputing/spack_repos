@@ -37,6 +37,7 @@ class PyMriToolkit(PythonPackage):
     maintainers("finsberg", "cdaversin")
 
     version("main", branch="main")
+    version("0.2.0", sha256="9fa0c7a22ba7ecc0bfacc72d5a4b21c54261f32222faa24ae8329acfd44a42e8")
     version("0.1.0", sha256="729d6094ed6edbe513905cecb4609b5238d04e360c68c632ec32fba97bbd80b9")
 
     # FIXME: Only add the python/pip/wheel dependencies if you need specific versions
@@ -52,13 +53,13 @@ class PyMriToolkit(PythonPackage):
     depends_on("py-pandas", type=("build", "run"))
     depends_on("py-scipy", type=("build", "run"))
 
-    variant("show", default=True, description="Show images in the terminal")
+    variant("show", default=False, description="Show images in the terminal")
     with when("+show"):
         depends_on("py-pillow", type=("build", "run"))
         depends_on("py-matplotlib", type=("build", "run"))
         depends_on("py-textual-image", type=("build", "run"))
 
-    variant("napari", default=True, description="Napari support")
+    variant("napari", default=False, description="Napari support")
     with when("+napari"):
         depends_on("py-napari", type=("build", "run"))
         depends_on("sqlite@:3.45.3", type="run")
