@@ -1,0 +1,86 @@
+name: Add new package
+description: Add information regarding a new software package
+title: "[Add package]: "
+labels: ["new-package"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request!
+
+  - type: input
+    id: description
+    attributes:
+      label: Title
+      description: Add title of package
+      placeholder: Surface Volume Meshing ToolKit
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: Add link to repository
+      placeholder: https://github.com/SVMTK/SVMTK
+    validations:
+      required: true
+
+  - type: input
+    id: maintainer
+    attributes:
+      label: Maintainer
+      description: Add list of maintainers
+      placeholder: John Doe, Ola Nordmann
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versions
+      description: Add list of versions
+      placeholder: main, 1.2.1, 1.5.1
+    validations:
+      required: true
+
+  - type: input
+    id: tarball
+    attributes:
+      label: tarball    
+      description: Add source of tarball
+      placeholder: https://github.com/scientificcomputing/scifem/archive/refs/tags/v0.7.0.tar.gz
+    validations:
+      required: false
+
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: Add license information
+      placeholder: MIT
+    validations:
+      required: true
+      
+
+  - type: textarea
+    id: variants
+    attributes:
+      label: variants
+      description: If the package has variants, add them here. If not, you can leave this field empty.
+      placeholder: |
+        variant("mpi", default=True, description="Enable MPI support")
+        variant("petsc", default=False, description="Enable PETSc support")
+    validations:
+      required: false
+
+  - type: textarea
+    id: other
+    attributes:
+      label: Other
+      description: Any other information you think is relevant for the package, e.g. dependencies, installation instructions, etc.
+      placeholder: |
+          We should only build the package with MPI support, as it is not useful without it.
+    validations:
+      required: false
