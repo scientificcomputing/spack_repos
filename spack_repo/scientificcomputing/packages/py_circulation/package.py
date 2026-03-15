@@ -27,9 +27,9 @@ from spack.package import *
 class PyCirculation(PythonPackage):
     """General ODE translator"""
 
-    homepage = "https://computationalPhysiology.github.io/gotranx"
-    git = "https://github.com/ComputationalPhysiology/gotranx.git"
-    url = "https://github.com/ComputationalPhysiology/gotranx/archive/refs/tags/v1.5.1.tar.gz"
+    homepage = "https://computationalPhysiology.github.io/circulation"
+    git = "https://github.com/ComputationalPhysiology/circulation.git"
+    url = "https://github.com/ComputationalPhysiology/circulation/archive/refs/tags/v0.2.1.tar.gz"
 
     # notify when the package is updated.
     maintainers("finsberg")
@@ -40,7 +40,7 @@ class PyCirculation(PythonPackage):
     license("MIT", checked_by="finsberg")
 
     version("main", branch="main")
-    version("1.2.1", sha256="7198386d06d0ebd00ec275c82592700eb2f5b2f1f5e1564e0b1c3baad8ddd934")
+    version("0.2.1", sha256="7198386d06d0ebd00ec275c82592700eb2f5b2f1f5e1564e0b1c3baad8ddd934")
 
     # Python version and Build backend
     depends_on("python@3.11:", type=("build", "run"))

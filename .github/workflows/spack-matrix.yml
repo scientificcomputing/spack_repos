@@ -298,3 +298,27 @@ jobs:
         run: |
           spack env activate ./env
           python -c "import gotranx"
+
+  py-circulation:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.2.1"]
+        spec: [""]
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-circulation@${{ matrix.version }} ${{ matrix.spec }}
+
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import circulation"
