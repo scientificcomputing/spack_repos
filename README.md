@@ -55,6 +55,29 @@ spack install -j 4
 ```
 
 
+## Available packages
+
+The following packages are currently available in this repository:
+- [x] [adios4dolfinx](https://github.com/jorgensd/adios4dolfinx)
+- [ ] [ap_features](https://github.com/ComputationalPhysiology/ap_features)
+- [ ] [dolfinx-mpc](https://github.com/jorgensd/dolfinx_mpc)
+- [ ] [cardiac-geometriesx](https://github.com/ComputationalPhysiology/cardiac-geometriesx)
+- [x] [circulation](https://github.com/ComputationalPhysiology/circulation)
+- [x] [fenicsx-beat](https://github.com/finsberg/fenicsx-beat)
+- [ ] [fenicsx-ldrb](https://github.com/finsberg/fenicsx-ldrb)
+- [ ] [fenicsx-pulse](https://github.com/finsberg/fenicsx-pulse)
+- [ ] [fenicsx-warp](https://github.com/ComputationalPhysiology/fenicsx-warp)
+- [ ] [fenicsx-ii](https://github.com/scientificcomputing/fenicsx_ii)
+- [x] [festim](https://github.com/festim-dev/FESTIM)
+- [x] [gotranx](https://github.com/finsberg/gotranx)
+- [x] [io4dolfinx](https://github.com/scientificcomputing/io4dolfinx)
+- [x] [mri-toolkit](https://github.com/scientificcomputing/mri-toolkit)
+- [x] [mri2mesh](https://github.com/scientificcomputing/mri2mesh)
+- [x] [networks-fenicsx](https://github.com/scientificcomputing/networks-fenicsx)
+- [x] [scifem](https://github.com/scientificcomputing/scifem)
+
+If you see a package that is missing, please submit an [issue](https://github.com/scientificcomputing/spack_repos/issues/new?template=package.yml)
+
 ## How to guides
 
 
