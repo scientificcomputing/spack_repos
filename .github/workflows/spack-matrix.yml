@@ -330,7 +330,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ["main", "0.2.1"]
+        version: ["main", "0.12.0"]
         spec: [""]
 
     steps:
