@@ -331,7 +331,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ["main", "0.12.0"]
-        spec: [""]
+        spec: ["^py-fenics-dolfinx%c,cxx=gcc@13.3.0"]
 
     steps:
       - uses: actions/checkout@v6
