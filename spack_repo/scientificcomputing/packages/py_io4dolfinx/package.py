@@ -37,7 +37,7 @@ class PyIo4dolfinx(PythonPackage):
 
     depends_on("cxx", type="build")
 
-    depends_on("py-fenics-dolfinx@0.9:", when="@1.1:", type="run")
+    depends_on("py-fenics-dolfinx@0.10:", when="@1.1:", type="run")
     depends_on("py-fenics-dolfinx@main", when="@main", type="run")
     depends_on("py-numpy", type="run")
     depends_on("py-packaging", type="run")
