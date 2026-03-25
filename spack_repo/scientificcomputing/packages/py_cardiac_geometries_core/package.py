@@ -49,5 +49,5 @@ class PyCardiacGeometriesCore(PythonPackage):
     # Core dependencies
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-gmsh@:4.13.1", type=("build", "run"))
-    depends_on("gmsh@:4.13.1", type=("build", "run"))
+    depends_on("gmsh@:4.13.1 ~fltk", type=("build", "run"))
     depends_on("py-rich-click", type=("build", "run"))
