@@ -47,7 +47,7 @@ class PyCardiacGeometriesx(PythonPackage):
     depends_on("py-setuptools@61.2:", type="build")
 
     # Core dependencies
-    depends_on("py-fenics-dolfinx", type=("build", "run"))
+    depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
     depends_on("py-rich-click", type=("build", "run"))
     depends_on("py-cardiac-geometries-core", type=("build", "run"))
     depends_on("py-structlog", type=("build", "run"))
