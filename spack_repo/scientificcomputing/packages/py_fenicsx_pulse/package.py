@@ -25,7 +25,7 @@ class PyFenicsxPulse(PythonPackage):
 
     depends_on("py-setuptools@42:", type="build")
 
-    depends_on("py-fenics-dolfinx +petsc4py", when="@main", type=("build", "run"))
+    depends_on("py-fenics-dolfinx +petsc4py", type=("build", "run"))
     depends_on("py-fenics-basix", type=("build", "run"))
     depends_on("py-fenics-ufl", type=("build", "run"))
     depends_on("py-mpi4py", type=("build", "run"))
