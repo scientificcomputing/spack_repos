@@ -7,26 +7,25 @@ from spack_repo.builtin.build_systems.python import PythonPackage
 from spack.package import *
 
 
-class PyFenicsxBeat(PythonPackage):
-    """Library to run cardiac EP simulations in FEniCSx"""
+class PyFenicsxPulse(PythonPackage):
+    """Library to run cardiac mechanics simulations in FEniCSx"""
 
-    homepage = "https://finsberg.github.io/fenicsx-beat/"
-    url = "https://github.com/finsberg/fenicsx-beat/archive/refs/tags/v0.2.3.tar.gz"
-    git = "https://github.com/finsberg/fenicsx-beat.git"
+    homepage = "https://finsberg.github.io/fenicsx-pulse/"
+    url = "https://github.com/finsberg/fenicsx-pulse/archive/refs/tags/v0.6.0.tar.gz"
+    git = "https://github.com/finsberg/fenicsx-pulse.git"
 
     maintainers("finsberg")
 
     license("MIT", checked_by="finsberg")
 
     version("main", branch="main")
-    version("0.2.4", sha256="ddba1ee2a4ded52a846b1ee11b1bd6e7d97522608dd6206436ae0fd58b12b17b")
+    version("0.6.0", sha256="fddfb2fa554e6537b8205a1a7806549fbbd5b55cb913338387f54f27bef87818")
 
     depends_on("python@3.10:", type=("build", "run"))
 
     depends_on("py-setuptools@42:", type="build")
 
-    depends_on("py-fenics-dolfinx@0.10:+petsc4py", when="@0.2:", type=("build", "run"))
-    depends_on("py-fenics-dolfinx@main+petsc4py", when="@main", type=("build", "run"))
+    depends_on("py-fenics-dolfinx +petsc4py", type=("build", "run"))
     depends_on("py-fenics-basix", type=("build", "run"))
     depends_on("py-fenics-ufl", type=("build", "run"))
     depends_on("py-mpi4py", type=("build", "run"))
@@ -37,3 +36,4 @@ class PyFenicsxBeat(PythonPackage):
     depends_on("py-rich", type=("build", "run"))
     depends_on("py-pint", type=("build", "run"))
     depends_on("py-scipy", type=("build", "run"))
+    depends_on("py-rich-argparse", type=("build", "run"))
