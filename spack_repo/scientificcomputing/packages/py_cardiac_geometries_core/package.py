@@ -25,7 +25,7 @@ from spack.package import *
 
 
 class PyCardiacGeometriesCore(PythonPackage):
-    """General ODE translator"""
+    """Core utilities for cardiac geometries, including mesh generation and IO."""
 
     homepage = "https://computationalphysiology.github.io/cardiac-geometries-core"
     git = "https://github.com/ComputationalPhysiology/cardiac-geometries-core.git"
