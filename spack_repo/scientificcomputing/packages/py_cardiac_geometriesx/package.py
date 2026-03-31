@@ -46,6 +46,8 @@ class PyCardiacGeometriesx(PythonPackage):
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-setuptools@61.2:", type="build")
 
+    variant("ukb", default=True, description="Add ukb-atla")
+
     # Core dependencies
     depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
     depends_on("py-rich-click", type=("build", "run"))
@@ -55,3 +57,6 @@ class PyCardiacGeometriesx(PythonPackage):
     depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@main:")
     depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.12")
     depends_on("py-scifem", type=("build", "run"))
+
+    with when("+ukb"):
+        depends_on("py-ukb-atlas", type=("build", "run"))
