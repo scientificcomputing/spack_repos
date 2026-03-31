@@ -47,6 +47,7 @@ class PyCardiacGeometriesx(PythonPackage):
     depends_on("py-setuptools@61.2:", type="build")
 
     variant("ukb", default=True, description="Add ukb-atla")
+    variant("ldrb", default=True, description="Add fenicsx-ldrb")
 
     # Core dependencies
     depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
@@ -60,3 +61,6 @@ class PyCardiacGeometriesx(PythonPackage):
 
     with when("+ukb"):
         depends_on("py-ukb-atlas", type=("build", "run"))
+
+    with when("+ldrb"):
+        depends_on("py-fenicsx-ldrb", type=("build", "run"))

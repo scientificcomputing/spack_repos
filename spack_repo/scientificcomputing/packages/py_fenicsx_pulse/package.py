@@ -24,6 +24,7 @@ class PyFenicsxPulse(PythonPackage):
     variant(
         "cardiac-geometries", default=True, description="Add cardiac geometries as a dependency"
     )
+    variant("circulation", default=True, description="Add circulation models as a dependency")
 
     depends_on("python@3.10:", type=("build", "run"))
 
@@ -44,3 +45,6 @@ class PyFenicsxPulse(PythonPackage):
 
     with when("+cardiac-geometries"):
         depends_on("py-cardiac-geometriesx", type=("build", "run"))
+
+    with when("+circulation"):
+        depends_on("py-circulation", type=("build", "run"))
