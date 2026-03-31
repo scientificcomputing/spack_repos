@@ -7,39 +7,32 @@ from spack_repo.builtin.build_systems.python import PythonPackage
 from spack.package import *
 
 
-class PyFenicsxBeat(PythonPackage):
+class PyFenicsxLdrb(PythonPackage):
     """Library to run cardiac EP simulations in FEniCSx"""
 
-    homepage = "https://finsberg.github.io/fenicsx-beat/"
-    url = "https://github.com/finsberg/fenicsx-beat/archive/refs/tags/v0.2.3.tar.gz"
-    git = "https://github.com/finsberg/fenicsx-beat.git"
+    homepage = "https://finsberg.github.io/fenicsx-ldrb/"
+    url = "https://github.com/finsberg/fenicsx-ldrb/archive/refs/tags/v0.1.17.tar.gz"
+    git = "https://github.com/finsberg/fenicsx-ldrb.git"
 
     maintainers("finsberg")
 
     license("MIT", checked_by="finsberg")
 
     version("main", branch="main")
-    version("0.2.4", sha256="ddba1ee2a4ded52a846b1ee11b1bd6e7d97522608dd6206436ae0fd58b12b17b")
-
-    variant(
-        "cardiac-geometries", default=True, description="Add cardiac geometries as a dependency"
-    )
+    version("0.1.17", sha256="19ce4660b9711d2efb2f9109d0bc6380eb9f2359a43f8f85f4207ee63f79f30c")
 
     depends_on("python@3.10:", type=("build", "run"))
 
     depends_on("py-setuptools@42:", type="build")
 
+    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@0.2:,main")
+    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.1")
+
     depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
     depends_on("py-fenics-basix", type=("build", "run"))
     depends_on("py-fenics-ufl", type=("build", "run"))
     depends_on("py-mpi4py", type=("build", "run"))
-    depends_on("py-scifem", type=("build", "run"))
     depends_on("petsc+mumps", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
-    depends_on("py-packaging", type=("build", "run"))
-    depends_on("py-rich", type=("build", "run"))
-    depends_on("py-pint", type=("build", "run"))
+    depends_on("py-numba", type=("build", "run"))
     depends_on("py-scipy", type=("build", "run"))
-
-    with when("+cardiac-geometries"):
-        depends_on("py-cardiac-geometriesx", type=("build", "run"))

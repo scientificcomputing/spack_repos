@@ -21,6 +21,11 @@ class PyFenicsxPulse(PythonPackage):
     version("main", branch="main")
     version("0.6.0", sha256="fddfb2fa554e6537b8205a1a7806549fbbd5b55cb913338387f54f27bef87818")
 
+    variant(
+        "cardiac-geometries", default=True, description="Add cardiac geometries as a dependency"
+    )
+    variant("circulation", default=True, description="Add circulation models as a dependency")
+
     depends_on("python@3.10:", type=("build", "run"))
 
     depends_on("py-setuptools@42:", type="build")
@@ -37,3 +42,9 @@ class PyFenicsxPulse(PythonPackage):
     depends_on("py-pint", type=("build", "run"))
     depends_on("py-scipy", type=("build", "run"))
     depends_on("py-rich-argparse", type=("build", "run"))
+
+    with when("+cardiac-geometries"):
+        depends_on("py-cardiac-geometriesx", type=("build", "run"))
+
+    with when("+circulation"):
+        depends_on("py-circulation", type=("build", "run"))
