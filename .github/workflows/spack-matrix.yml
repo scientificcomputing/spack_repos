@@ -394,3 +394,28 @@ jobs:
         run: |
           spack env activate ./env
           python -c "import ukb"
+
+
+  py-fenicsx-ldrb:
+    needs: style-check
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["main", "0.1.17"]
+        spec: ["^py-fenics-dolfinx%c,cxx=gcc@13.3.0"]
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: spack_repos
+      - uses: ./spack_repos/.github/actions/test-package
+        with:
+          spec: py-fenicsx-ldrb@${{ matrix.version }} ${{ matrix.spec }}
+
+      - name: Import test
+        shell: spack-bash {0}
+        run: |
+          spack env activate ./env
+          python -c "import ldrb"
