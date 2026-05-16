@@ -16,6 +16,7 @@ class PyTyper(PythonPackage):
     license("MIT", checked_by="finsberg")
 
     version("0.24.1", sha256="e39b4732d65fbdcde189ae76cf7cd48aeae72919dea1fdfc16593be016256b45")
+    version("0.25.1", sha256="9616eb8853a09ffeabab1698952f33c6f29ffdbceb4eaeecf571880e8d7664cc")
 
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-pdm-backend", type="build")

@@ -41,6 +41,7 @@ class PyGotranx(PythonPackage):
 
     version("main", branch="main")
     version("1.5.1", sha256="5386876d6cd6f4465a8288a27a7fd44a98116e5b7887173578873371a6a4d3a6")
+    version("1.6.1", sha256="43602fb6782b33774a119d35545a99ad27cf9a76fbe919844a1f42b5e20cc1e8")
 
     # Python version and Build backend
     depends_on("python@3.9:", type=("build", "run"))
