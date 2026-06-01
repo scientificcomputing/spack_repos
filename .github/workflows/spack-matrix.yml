@@ -1,4 +1,4 @@
-name: 🤖
+name: 🤖 CI Matrix
 
 on:
   push:
@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   style-check:
-    name: ✨
+    name: ✨ Style Check
     runs-on: ubuntu-latest
 
     steps:
@@ -42,379 +42,48 @@ jobs:
       - run: chmod +x style_check.sh
       - run: ./style_check.sh HEAD^
 
-  # py-dolfinx-mpc:
-  #   needs: style-check
-  #   runs-on: ubuntu-latest
-  #   container: ubuntu:24.04
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       version: ["main", "0.10.1", "0.9.3", "0.8.1"]
-  #       spec: ["^py-petsc4py%gcc@13", "+numba ^py-petsc4py%gcc@13"]
+  generate-matrix:
+    name: ⚙️ Generate Test Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Matrix
+        id: set-matrix
+        run: python .github/scripts/generate_matrix.py
 
-  #   steps:
-  #     - uses: actions/checkout@v6
-  #       with:
-  #         path: spack_repos
-  #     - uses: ./spack_repos/.github/actions/test-package
-  #       with:
-  #         spec: py-dolfinx-mpc@${{ matrix.version }} ${{ matrix.spec }}
-  #         remote_repos: "https://github.com/FEniCS/spack-fenics.git"
-
-  #     - name: Import test
-  #       shell: spack-bash {0}
-  #       run: |
-  #         spack env activate ./env
-  #         python -c "import dolfinx_mpc"
-
-  # py-fenicsx-ii:
-  #   needs: style-check
-  #   runs-on: ubuntu-latest
-  #   container: ubuntu:24.04
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       version: ["main", "0.4.0"]
-  #       spec: ["", "+petsc"]
-
-  #   steps:
-  #     - uses: actions/checkout@v6
-  #       with:
-  #         path: spack_repos
-  #     - uses: ./spack_repos/.github/actions/test-package
-  #       with:
-  #         spec: py-fenicsx-ii@${{ matrix.version }} ${{ matrix.spec }}
-  #         remote_repos: "https://github.com/FEniCS/spack-fenics.git"
-
-  #     - name: Import test
-  #       shell: spack-bash {0}
-  #       run: |
-  #         spack env activate ./env
-  #         python -c "import fenicsx_ii"
-
-  py-io4dolfinx:
-    needs: style-check
+  test-package:
+    needs: [style-check, generate-matrix]
     runs-on: ubuntu-latest
     container: ubuntu:24.04
     strategy:
       fail-fast: false
       matrix:
-        version: ["main", "1.1.2"]
-        spec:
-          [
-            "^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
-            "+adios2+h5py+xdmf+vtkhdf+pyvista ^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
-          ]
-
+        include: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
+        
+    name: ${{ matrix.package }}@${{ matrix.version }} ${{ matrix.spec }}
     steps:
       - uses: actions/checkout@v6
         with:
           path: spack_repos
       - uses: ./spack_repos/.github/actions/test-package
         with:
-          spec: py-io4dolfinx@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
+          spec: ${{ matrix.package }}@${{ matrix.version }} ${{ matrix.spec }}
+          remote_repos: ${{ matrix.remote_repos }}
 
       - name: Import test
         shell: spack-bash {0}
         run: |
           spack env activate ./env
-          python -c "import io4dolfinx"
+          python -c "import ${{ matrix.import_name }}"
 
-  py-meshio:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["5.3.5"]
-        spec: ["", "+xdmf"]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-meshio@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import meshio"
-
-  py-mri-toolkit:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.2.0"]
-        spec: ["", "+show"]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-mri-toolkit@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import mritk"
-
-  py-mri2mesh:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.3.0"]
-        spec: ["", "+mesh"]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-mri2mesh@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import mri2mesh"
-
-  py-networks-fenicsx:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.2.0"]
-        spec: ["^py-fenics-dolfinx%gcc@13"]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-networks-fenicsx@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import networks_fenicsx"
-
-  py-scifem:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.16.1", "0.14.0"]
-        spec: ["+adios2+petsc+biomed+hdf5 ^petsc+mumps"]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-scifem@${{ matrix.version }} ${{ matrix.spec }}
-          remote_repos: "https://github.com/FEniCS/spack-fenics.git"
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import scifem"
-
-      - name: Run tests
+      - name: Run tests (scifem only)
+        if: matrix.package == 'py-scifem'
         shell: spack-bash {0}
         run: |
           spack env activate ./env
           spack install --add py-pytest
-          spack stage py-scifem@${{ matrix.version }} ${{ matrix.spec }}
-          spack cd py-scifem@${{ matrix.version }} ${{ matrix.spec }}
+          spack stage ${{ matrix.package }}@${{ matrix.version }} ${{ matrix.spec }}
+          spack cd ${{ matrix.package }}@${{ matrix.version }} ${{ matrix.spec }}
           python -m pytest
-
-  py-fenicsx-beat:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.2.4"]
-        spec: ["^py-fenics-dolfinx%gcc@13"]
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-fenicsx-beat@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import beat"
-
-  py-gotranx:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "1.5.1"]
-        spec: [""]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-gotranx@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import gotranx"
-
-  py-circulation:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.2.1"]
-        spec: [""]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-circulation@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import circulation"
-
-  py-cardiac-geometriesx:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.12.0"]
-        spec: ["^py-fenics-dolfinx%c,cxx=gcc@13.3.0"]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-cardiac-geometriesx@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import cardiac_geometries"
-
-  py-fenicsx-pulse:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.6.0"]
-        spec: ["^py-fenics-dolfinx%c,cxx=gcc@13.3.0"]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-fenicsx-pulse@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import pulse"
-
-  py-ukb-atlas:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "1.2.3"]
-        spec: [""]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-ukb-atlas@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import ukb"
-
-
-  py-fenicsx-ldrb:
-    needs: style-check
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ["main", "0.1.17"]
-        spec: ["^py-fenics-dolfinx%c,cxx=gcc@13.3.0"]
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          path: spack_repos
-      - uses: ./spack_repos/.github/actions/test-package
-        with:
-          spec: py-fenicsx-ldrb@${{ matrix.version }} ${{ matrix.spec }}
-
-      - name: Import test
-        shell: spack-bash {0}
-        run: |
-          spack env activate ./env
-          python -c "import ldrb"

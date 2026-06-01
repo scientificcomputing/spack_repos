@@ -1,0 +1,70 @@
+name: 📦 Spack Dependabot
+
+on:
+  schedule:
+    - cron: "0 2 * * MON" # Runs weekly on Mondays at 02:00
+  workflow_dispatch:      # Allows you to trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  spack-dependabot:
+    name: Check for Spack Package Updates
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run Package Updater Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python .github/scripts/update_packages.py
+
+      - name: Format with Ruff
+        run: |
+          pip install ruff
+          # Aligns the newly injected `version()` blocks with your ruff.toml
+          ruff format spack_repo/scientificcomputing/packages/
+
+      - name: Commit and Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if there are any changes (if not, we can exit early)
+          if [[ -z $(git status -s) ]]; then
+            echo "No updates found. Skipping PR creation."
+            exit 0
+          fi
+
+          # Configure standard GitHub Actions bot git credentials
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Create a dynamic branch name based on the current timestamp
+          BRANCH_NAME="spack-dependabot-updates-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH_NAME"
+
+          # Stage and commit the formatted updates
+          git add spack_repo/scientificcomputing/packages/ .github/ci-test-config.json
+          git commit -m "chore(deps): update spack packages to latest upstream versions"
+
+          # Push the new branch to the repository
+          git push origin "$BRANCH_NAME"
+
+          # Use the native GitHub CLI to create the pull request
+          gh pr create \
+            --title "Bump Spack packages to latest upstream versions" \
+            --body "### Spack Dependabot Updates 🤖
+          This is an automated PR updating your \`package.py\` definitions and CI testing matrix to their latest upstream versions (discovered via the GitHub API and PyPI)." \
+            --label "new-package" \
+            --head "$BRANCH_NAME" \
+            --base main
