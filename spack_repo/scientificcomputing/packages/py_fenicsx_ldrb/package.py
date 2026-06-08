@@ -20,6 +20,7 @@ class PyFenicsxLdrb(PythonPackage):
 
     version("main", branch="main")
     version("0.1.17", sha256="19ce4660b9711d2efb2f9109d0bc6380eb9f2359a43f8f85f4207ee63f79f30c")
+    version("0.1.19", sha256="baf593da0ca38e7dfdad807bd62a1ff411dc86a0c094ae978cff2ec055f6c2e2")
 
     depends_on("python@3.10:", type=("build", "run"))
 

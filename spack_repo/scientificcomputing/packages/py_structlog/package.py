@@ -41,6 +41,7 @@ class PyStructlog(PythonPackage):
 
     version("main", branch="main")
     version("25.5.0", sha256="ca447e91f03a18b3ae1f1917342c023091e923418409e19cfe67b90dbdce2694")
+    version("26.1.0", sha256="a32b711804f80404b1c6de47556df2215c399acec2d38199e91ceb4a2ca1fd51")
 
     # Python version and Build backend
     depends_on("python@3.9:", type=("build", "run"))

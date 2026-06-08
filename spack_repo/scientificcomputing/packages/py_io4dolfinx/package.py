@@ -26,6 +26,7 @@ class PyIo4dolfinx(PythonPackage):
     version("main", branch="main")
     version("1.1.2", sha256="592954e9ef4942fef966cba49b131213ff105fa473dd26912c1d2a22fb2392d3")
     version("1.1.0", sha256="3641d72083858d5ae0672a16cb11dc6fd792a117cbc2281be307ffc47a91fcb2")
+    version("1.2.0", sha256="2da5fb02998cef9203c2da75a6280231ff66bc044557e6816148e968fcbf53b7")
 
     variant("adios2", default=True, description="ADIOS2 backend support")
     variant("h5py", default=True, description="H5Py backend support")

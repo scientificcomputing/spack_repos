@@ -22,6 +22,7 @@ class PyFestim(PythonPackage):
 
     version("main", branch="fenicsx")
     version(
+    version("2.0-alpha.8", sha256="b12144204e6d1d887a9c0cfadafbfaa87aa6b16fc09f0884df72fe6d0d56dc38")
         "2.0-beta.2post1",
         sha256="d1ebca798f975480289b8027c5ff87a8bd3b21b8931f09660614fdd9d80c7819",
     )
