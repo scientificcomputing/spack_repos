@@ -80,7 +80,7 @@ runs:
           oci_cache \
           oci://ghcr.io/${{ github.repository_owner }}/spack-buildcache
         
-        spack mirror add develop https://binaries.spack.io/develop
+        spack mirror add --unsigned develop https://binaries.spack.io/develop
         spack config add "packages:all:require:['os=ubuntu24.04','target=x86_64_v3']"
         spack buildcache keys --install --trust
 
