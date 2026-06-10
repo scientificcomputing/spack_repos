@@ -108,14 +108,29 @@ def process_package(package_py_path):
 
     # Inject the new version block right after the last version() block
     lines = content.split("\n")
-    last_version_idx = -1
-    for i, line in enumerate(lines):
-        if line.strip().startswith("version("):
-            last_version_idx = i
+    last_version_end_idx = -1
+    open_parens = 0
+    in_version_block = False
 
-    if last_version_idx != -1:
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+
+        # Detect the start of a version block
+        if stripped.startswith("version(") and not in_version_block:
+            in_version_block = True
+
+        if in_version_block:
+            # Count opening and closing parentheses on the current line
+            open_parens += line.count("(") - line.count(")")
+
+            # If parentheses are balanced, the block is closed
+            if open_parens <= 0:
+                in_version_block = False
+                last_version_end_idx = i
+
+    if last_version_end_idx != -1:
         new_line = f'    version("{new_version}", sha256="{sha256}")'
-        lines.insert(last_version_idx + 1, new_line)
+        lines.insert(last_version_end_idx + 1, new_line)
 
         with open(package_py_path, "w") as f:
             f.write("\n".join(lines))
