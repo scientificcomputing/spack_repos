@@ -65,6 +65,5 @@ jobs:
             --title "Bump Spack packages to latest upstream versions" \
             --body "### Spack Dependabot Updates 🤖
           This is an automated PR updating your \`package.py\` definitions and CI testing matrix to their latest upstream versions (discovered via the GitHub API and PyPI)." \
-            --label "new-package" \
             --head "$BRANCH_NAME" \
             --base main
