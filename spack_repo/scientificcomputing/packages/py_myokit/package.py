@@ -41,6 +41,7 @@ class PyMyokit(PythonPackage):
 
     version("main", branch="main")
     version("1.39.1", sha256="8282b145cd18eb8f2efa517591716d69ab0d6ec18dd09db9a9fab6a0fb39618b")
+    version("1.39.2", sha256="df328838943062fb9e0f0c34db09e55afdf4ca182f5e373df40bae0ed4a3c6cf")
 
     # Python version and Build backend
     depends_on("python@3.9:", type=("build", "run"))

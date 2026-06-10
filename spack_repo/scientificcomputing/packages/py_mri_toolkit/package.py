@@ -39,6 +39,7 @@ class PyMriToolkit(PythonPackage):
     version("main", branch="main")
     version("0.2.0", sha256="9fa0c7a22ba7ecc0bfacc72d5a4b21c54261f32222faa24ae8329acfd44a42e8")
     version("0.1.0", sha256="729d6094ed6edbe513905cecb4609b5238d04e360c68c632ec32fba97bbd80b9")
+    version("0.4.3", sha256="66914461b61416fef709ba6c4e00815c9eac2e4dbdbf39f4531040a3c90be880")
 
     # FIXME: Only add the python/pip/wheel dependencies if you need specific versions
     # or need to change the dependency type. Generic python/pip/wheel dependencies are
