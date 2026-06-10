@@ -28,6 +28,7 @@ class PyScifem(PythonPackage):
     version("0.6.0", sha256="548c9af8997537bc6830c898a9ffe7007dda16b5e40f3240c97e646cfd0a30b3")
     version("0.5.0", sha256="1e5978ab97889c2d6bad80e375c9db1b050bfb68c197eada17928e6908f15372")
     version("0.4.0", sha256="c4494008c974c3303de7d28d40e038478c4fc1c7c24b7117305bd552a2a1c5a4")
+    version("0.19.2", sha256="b929ee22084a5a9dabe7b0d28f7d4dba9c18ac90642d3bd3e132da054d6f29b8")
 
     variant("adios2", default=False, description="ADIOS2 support")
     variant("petsc", default=False, description="PETSc support")
