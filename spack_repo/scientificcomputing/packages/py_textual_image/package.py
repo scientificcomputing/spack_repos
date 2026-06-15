@@ -35,6 +35,7 @@ class PyTextualImage(PythonPackage):
     maintainers("finsberg")
 
     version("0.8.5", sha256="43d4c0026a4f21fa255f41eac7b0fc1f7410a4c7bc9bf95b908bec901b0a8c3a")
+    version("0.13.2", sha256="8ca0cee2bfcd7734de5b16a1936da226b77b745e28830d9cf2bc202cb70e43ee")
 
     # FIXME: Only add the python/pip/wheel dependencies if you need specific versions
     # or need to change the dependency type. Generic python/pip/wheel dependencies are
