@@ -106,7 +106,7 @@
   "py-fenicsx-pulse": {
     "versions": [
       "main",
-      "0.6.1",
+      "0.6.1"
     ],
     "specs": [
       "^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
