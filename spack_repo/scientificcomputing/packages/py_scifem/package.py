@@ -43,29 +43,31 @@ class PyScifem(PythonPackage):
     depends_on("py-setuptools@42:", type="build")
     depends_on("cmake@3.21:", type="build")
 
-    depends_on("py-scipy", when="@0.20:", type="run")
+    depends_on("py-scipy", when="@0.20:", type=("build", "run"))
 
     depends_on("fenics-dolfinx@main", when="@main", type=("build", "link"))
+    depends_on("fenics-dolfinx@0.11:", when="@0.20:", type=("build", "link"))
     depends_on("fenics-dolfinx@0.10:", when="@0.16:", type=("build", "link"))
     depends_on("fenics-dolfinx@0.9:", when="@0.4:", type=("build", "link"))
     depends_on("fenics-basix@main", when="@main", type=("build", "link"))
     depends_on("fenics-basix@0.9:", when="@0.4:", type=("build", "link"))
 
-    depends_on("py-fenics-dolfinx@0.10:", when="@0.16:", type="run")
-    depends_on("py-fenics-dolfinx@0.9:", when="@0.4:", type="run")
-    depends_on("py-fenics-dolfinx@main", when="@main", type="run")
-    depends_on("py-numpy", type="run")
-    depends_on("py-packaging", type="run")
+    depends_on("py-fenics-dolfinx@0.11:", when="@0.20:", type=("build", "run"))
+    depends_on("py-fenics-dolfinx@0.10:", when="@0.16:", type=("build", "run"))
+    depends_on("py-fenics-dolfinx@0.9:", when="@0.4:", type=("build", "run"))
+    depends_on("py-fenics-dolfinx@main", when="@main", type=("build", "run"))
+    depends_on("py-numpy", type=("build", "run"))
+    depends_on("py-packaging", type=("build", "run"))
 
     with when("+adios2"):
-        depends_on("adios2+python", type="run")
+        depends_on("adios2+python", type=("build", "run"))
 
     with when("+petsc"):
-        depends_on("py-petsc4py", type="run")
-        depends_on("py-fenics-dolfinx+petsc4py", type="run")
+        depends_on("py-petsc4py", type=("build", "run"))
+        depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
 
     with when("+biomed"):
-        depends_on("py-nibabel", type="run")
+        depends_on("py-nibabel", type=("build", "run"))
 
     with when("+hdf5"):
-        depends_on("py-h5py+mpi", when="+hdf5", type="run")
+        depends_on("py-h5py+mpi", when="+hdf5", type=("build", "run"))
