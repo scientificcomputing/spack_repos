@@ -31,7 +31,9 @@ class PyAdios4dolfinx(PythonPackage):
     )
     version("0.9.1", sha256="4dfd8ea3d8d21566adc40a3615830e5613d215e774e7f30de6d8c88b2078b549")
     version("0.9.0", sha256="5a72a8bc111d848b56d6eb776d7ca5963fe41e4126a3d875304224f80f15b8f6")
-    version("0.10.0.post0", sha256="6a937ea4c622c63a00a0c6993fc89c93b13f25a5a2c0492776fec47ce3cee9d2")
+    version(
+        "0.10.0.post0", sha256="6a937ea4c622c63a00a0c6993fc89c93b13f25a5a2c0492776fec47ce3cee9d2"
+    )
 
     depends_on("py-packaging", type="run")
 
