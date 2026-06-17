@@ -20,13 +20,14 @@ class PyFenicsxLdrb(PythonPackage):
 
     version("main", branch="main")
     version("0.1.17", sha256="19ce4660b9711d2efb2f9109d0bc6380eb9f2359a43f8f85f4207ee63f79f30c")
+    version("0.1.19", sha256="baf593da0ca38e7dfdad807bd62a1ff411dc86a0c094ae978cff2ec055f6c2e2")
 
     depends_on("python@3.10:", type=("build", "run"))
 
     depends_on("py-setuptools@42:", type="build")
 
-    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@0.2:,main")
-    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.1")
+    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@0.1.19:")
+    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.1.17")
 
     depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
     depends_on("py-fenics-basix", type=("build", "run"))

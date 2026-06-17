@@ -41,6 +41,7 @@ class PyCardiacGeometriesx(PythonPackage):
 
     version("main", branch="main")
     version("0.12.0", sha256="93698a5d0d8ac7751c458dde963116a9c050c6d534b45cd034aa13dd668cc904")
+    version("0.14.0", sha256="894dbfd847a6f528fbf967c085720a930c5f7b879adf84339f96c7880632e88b")
 
     # Python version and Build backend
     depends_on("python@3.10:", type=("build", "run"))
@@ -55,8 +56,9 @@ class PyCardiacGeometriesx(PythonPackage):
     depends_on("py-cardiac-geometries-core", type=("build", "run"))
     depends_on("py-structlog", type=("build", "run"))
 
-    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@main:")
-    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.12")
+    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@0.13.0:")
+    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.12.0")
+
     depends_on("py-scifem", type=("build", "run"))
 
     with when("+ukb"):

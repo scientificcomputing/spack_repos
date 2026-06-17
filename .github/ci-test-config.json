@@ -1,6 +1,9 @@
 {
   "py-io4dolfinx": {
-    "versions": ["main", "1.1.2"],
+    "versions": [
+      "main",
+      "1.2.0"
+    ],
     "specs": [
       "^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
       "+adios2+h5py+xdmf+vtkhdf+pyvista ^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
@@ -9,63 +12,125 @@
     "remote_repos": "https://github.com/FEniCS/spack-fenics.git"
   },
   "py-meshio": {
-    "versions": ["5.3.5"],
-    "specs": ["", "+xdmf"],
+    "versions": [
+      "5.3.5"
+    ],
+    "specs": [
+      "",
+      "+xdmf"
+    ],
     "import_name": "meshio"
   },
   "py-mri-toolkit": {
-    "versions": ["main", "0.2.0"],
-    "specs": ["", "+show"],
+    "versions": [
+      "main",
+      "0.4.3"
+    ],
+    "specs": [
+      "",
+      "+show"
+    ],
     "import_name": "mritk"
   },
   "py-mri2mesh": {
-    "versions": ["main", "0.3.0"],
-    "specs": ["", "+mesh"],
+    "versions": [
+      "main",
+      "0.3.0"
+    ],
+    "specs": [
+      "",
+      "+mesh"
+    ],
     "import_name": "mri2mesh"
   },
   "py-networks-fenicsx": {
-    "versions": ["main", "0.2.0"],
-    "specs": ["^py-fenics-dolfinx%gcc@13"],
+    "versions": [
+      "main",
+      "0.2.0"
+    ],
+    "specs": [
+      "^py-fenics-dolfinx%gcc@13"
+    ],
     "import_name": "networks_fenicsx"
   },
   "py-scifem": {
-    "versions": ["main", "0.16.1", "0.14.0"],
-    "specs": ["+adios2+petsc+biomed+hdf5 ^petsc+mumps"],
+    "versions": [
+      "main",
+      "0.20.0"
+    ],
+    "specs": [
+      "+adios2+petsc+biomed+hdf5 ^petsc+mumps"
+    ],
     "import_name": "scifem",
     "remote_repos": "https://github.com/FEniCS/spack-fenics.git"
   },
   "py-fenicsx-beat": {
-    "versions": ["main", "0.2.4"],
-    "specs": ["^py-fenics-dolfinx%gcc@13"],
+    "versions": [
+      "main",
+      "0.3.0"
+    ],
+    "specs": [
+      "^py-fenics-dolfinx%gcc@13"
+    ],
     "import_name": "beat"
   },
   "py-gotranx": {
-    "versions": ["main", "1.5.1"],
-    "specs": [""]
+    "versions": [
+      "main",
+      "1.6.1"
+    ],
+    "specs": [
+      ""
+    ]
   },
   "py-circulation": {
-    "versions": ["main", "0.2.1"],
-    "specs": [""],
+    "versions": [
+      "main",
+      "0.3.1"
+    ],
+    "specs": [
+      ""
+    ],
     "import_name": "circulation"
   },
   "py-cardiac-geometriesx": {
-    "versions": ["main", "0.12.0"],
-    "specs": ["^py-fenics-dolfinx%c,cxx=gcc@13.3.0"],
+    "versions": [
+      "main",
+      "0.14.0"
+    ],
+    "specs": [
+      "^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
+    ],
     "import_name": "cardiac_geometries"
   },
   "py-fenicsx-pulse": {
-    "versions": ["main", "0.6.0"],
-    "specs": ["^py-fenics-dolfinx%c,cxx=gcc@13.3.0"],
+    "versions": [
+      "main",
+      "0.6.1"
+    ],
+    "specs": [
+      "^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
+    ],
     "import_name": "pulse"
   },
   "py-ukb-atlas": {
-    "versions": ["main", "1.2.3"],
-    "specs": [""],
+    "versions": [
+      "main",
+      "1.3.1"
+    ],
+    "specs": [
+      ""
+    ],
     "import_name": "ukb"
   },
   "py-fenicsx-ldrb": {
-    "versions": ["main", "0.1.17"],
-    "specs": ["^py-fenics-dolfinx%c,cxx=gcc@13.3.0"],
+    "versions": [
+      "main",
+      "0.1.19"
+    ],
+    "specs": [
+      "^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
+    ],
     "import_name": "ldrb"
   }
 }
