@@ -56,8 +56,9 @@ class PyCardiacGeometriesx(PythonPackage):
     depends_on("py-cardiac-geometries-core", type=("build", "run"))
     depends_on("py-structlog", type=("build", "run"))
 
-    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@main:")
-    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.12")
+    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@0.13.0:")
+    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.12.0")
+
     depends_on("py-scifem", type=("build", "run"))
 
     with when("+ukb"):

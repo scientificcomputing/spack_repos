@@ -26,8 +26,8 @@ class PyFenicsxLdrb(PythonPackage):
 
     depends_on("py-setuptools@42:", type="build")
 
-    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@0.2:,main")
-    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.1")
+    depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@0.1.19:")
+    depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.1.17")
 
     depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
     depends_on("py-fenics-basix", type=("build", "run"))
