@@ -43,6 +43,7 @@ class PyTextualImage(PythonPackage):
     depends_on("py-wheel", type="build", when="@:0.13")
 
     depends_on("py-uv", type="build", when="@0.13:")
+    depends_on("py-hatchling", type="build", when="@0.13:")
 
     depends_on("py-pillow", type=("build", "run"))
     depends_on("py-rich", type=("build", "run"))
