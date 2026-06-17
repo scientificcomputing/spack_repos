@@ -47,13 +47,13 @@ class PyScifem(PythonPackage):
 
     depends_on("fenics-dolfinx@main", when="@main", type=("build", "link"))
     depends_on("fenics-dolfinx@0.11:", when="@0.20:", type=("build", "link"))
-    depends_on("fenics-dolfinx@0.10:", when="@0.16:", type=("build", "link"))
+    depends_on("fenics-dolfinx@:0.10", when="@:0.19", type=("build", "link"))
     depends_on("fenics-dolfinx@0.9:", when="@0.4:", type=("build", "link"))
     depends_on("fenics-basix@main", when="@main", type=("build", "link"))
     depends_on("fenics-basix@0.9:", when="@0.4:", type=("build", "link"))
 
     depends_on("py-fenics-dolfinx@0.11:", when="@0.20:", type=("build", "run"))
-    depends_on("py-fenics-dolfinx@0.10:", when="@0.16:", type=("build", "run"))
+    depends_on("py-fenics-dolfinx@:0.10", when="@:0.19", type=("build", "run"))
     depends_on("py-fenics-dolfinx@0.9:", when="@0.4:", type=("build", "run"))
     depends_on("py-fenics-dolfinx@main", when="@main", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
