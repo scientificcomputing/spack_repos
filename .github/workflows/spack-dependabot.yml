@@ -2,7 +2,7 @@ name: 📦 Spack Dependabot
 
 on:
   schedule:
-    - cron: "0 2 * * MON" # Runs weekly on Mondays at 02:00
+    - cron: "0 2 1 * *" # Runs monthly on the 1st at 02:00
   workflow_dispatch:      # Allows you to trigger it manually from the Actions tab
 
 permissions:
