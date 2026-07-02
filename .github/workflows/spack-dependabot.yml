@@ -52,10 +52,6 @@ jobs:
           # Create a dynamic branch name based on the current timestamp
           BRANCH_NAME="spack-dependabot-updates-$(date +%Y%m%d-%H%M%S)"
           git checkout -b "$BRANCH_NAME"
-
-          # Run pre-commit
-          pip install pre-commit
-          pre-commit run --all-files
           
           # Stage and commit the formatted updates
           git add spack_repo/scientificcomputing/packages/ .github/ci-test-config.json
