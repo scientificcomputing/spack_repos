@@ -17,6 +17,7 @@ class PyTyper(PythonPackage):
 
     version("0.24.1", sha256="e39b4732d65fbdcde189ae76cf7cd48aeae72919dea1fdfc16593be016256b45")
     version("0.26.7", sha256="e314a34c617e419c091b2830dda3ea1f257134ff593061a8f5b9717ab8dddb3a")
+    version("0.26.8", sha256="c244a6bd558886fe3f8780efb6bdd28bb9aff005a94eedebaa5cb32926fe2f7e")
 
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-pdm-backend", type="build")
