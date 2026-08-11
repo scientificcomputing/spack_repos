@@ -31,6 +31,7 @@ class PyFestim(PythonPackage):
     version(
         "2.0-alpha.8", sha256="b12144204e6d1d887a9c0cfadafbfaa87aa6b16fc09f0884df72fe6d0d56dc38"
     )
+    version("2.2-rc.1", sha256="daa4210b47502a9f5bcc53c9a470c91d8d44e47ac67fe43da8e6b11ae23f3336")
 
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-setuptools@42:", type="build")
