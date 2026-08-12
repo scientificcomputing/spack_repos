@@ -2,6 +2,7 @@
   "py-io4dolfinx": {
     "versions": [
       "main",
+      "1.3.0",
       "1.2.0"
     ],
     "specs": [
@@ -56,6 +57,7 @@
   "py-scifem": {
     "versions": [
       "main",
+      "0.21.0",
       "0.20.0"
     ],
     "specs": [
@@ -67,6 +69,7 @@
   "py-fenicsx-beat": {
     "versions": [
       "main",
+      "0.5.0",
       "0.3.0"
     ],
     "specs": [
@@ -77,6 +80,7 @@
   "py-gotranx": {
     "versions": [
       "main",
+      "1.8.0",
       "1.6.1"
     ],
     "specs": [
@@ -96,6 +100,7 @@
   "py-cardiac-geometriesx": {
     "versions": [
       "main",
+      "0.15.1",
       "0.14.0"
     ],
     "specs": [
@@ -106,6 +111,7 @@
   "py-fenicsx-pulse": {
     "versions": [
       "main",
+      "0.7.0",
       "0.6.1"
     ],
     "specs": [

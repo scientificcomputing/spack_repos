@@ -42,6 +42,7 @@ class PyCardiacGeometriesCore(PythonPackage):
     version("main", branch="main")
     version("1.2.2", sha256="bb7a003474d2f2013dcb2190ca1d30527f1e7aee3626114083f0656dc3830b9d")
     version("1.4.0", sha256="69b49e27c91e87e3c2b548a6a7a395cce7fe6091e7baec57f97a73f93cdc1178")
+    version("1.5.0", sha256="330b26a6285b8e00739dcf52d9fac57480a8dbd3d120018c3f8f59666bb5de0d")
 
     # Python version and Build backend
     depends_on("python@3.8:", type=("build", "run"))
