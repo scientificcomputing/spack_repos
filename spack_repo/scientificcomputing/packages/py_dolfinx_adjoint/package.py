@@ -32,8 +32,7 @@ class PyDolfinxAdjoint(PythonPackage):
 
     depends_on("py-fenics-dolfinx@0.11:", when="@0.3:", type=("build", "run"))
     depends_on("py-fenics-dolfinx@main", when="@main", type=("build", "run"))
-    depends_on("py-pyadjoint@2025.10:", when="@0.3:", type=("build", "run"))
-    depends_on("py-pyadjoint@main", when="@main", type=("build", "run"))
+    depends_on("py-pyadjoint@master", type=("build", "run"))
     depends_on("py-packaging@24.2:", type=("build", "run"))
     depends_on("py-typing-extensions", when="^python@:3.10", type=("build", "run"))
     depends_on("py-setuptools@42:", type="build")
