@@ -138,5 +138,15 @@
       "^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
     ],
     "import_name": "ldrb"
+  },
+  "py-dolfinx-adjoint": {
+    "versions": [
+      "main",
+      "0.3.0"
+    ],
+    "specs": [
+      "+petsc+scifem+fenicsx-ii+moola"
+    ],
+    "import_name": "dolfinx_adjoint"
   }
 }
