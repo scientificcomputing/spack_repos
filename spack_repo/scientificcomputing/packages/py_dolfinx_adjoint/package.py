@@ -26,6 +26,7 @@ class PyDolfinxAdjoint(PythonPackage):
     variant("scifem", default=False, description="Enable scifem support")
     variant("fenicsx-ii", default=False, description="Enable fenicsx_ii support")
     variant("moola", default=False, description="Enable moola optimisation backend support")
+    variant("petsc", default=True, description="Enable petsc support")
 
     depends_on("python@3.10:", type=("build", "run"))
 
