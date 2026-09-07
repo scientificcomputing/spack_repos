@@ -145,8 +145,7 @@
       "0.3.0"
     ],
     "specs": [
-      "",
-      "+scifem+fenicsx-ii+moola"
+      "+petsc+scifem+fenicsx-ii+moola"
     ],
     "import_name": "dolfinx_adjoint"
   }
