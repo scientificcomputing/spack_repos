@@ -18,7 +18,7 @@ class PyPyadjoint(PythonPackage):
 
     license("LGPL-3.0-only", checked_by="finsberg")
 
-    version("main", branch="main")
+    version("master", branch="master")
     version("2026.4.1", sha256="425d8061311fd32cbd82c94bfd7ec8c75421d39d020cbb2940ac94cc700264bd")
 
     depends_on("python@3.10:", type=("build", "run"))
