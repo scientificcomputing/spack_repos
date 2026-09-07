@@ -148,6 +148,6 @@
       "",
       "+scifem+fenicsx-ii+moola"
     ],
-    "import_name": "ldrb"
+    "import_name": "dolfinx_adjoint"
   }
 }
