@@ -21,6 +21,7 @@ class PyPytetwild(PythonPackage):
     version("main", branch="main", submodules=True)
     version("0.2.3", tag="v0.2.3", submodules=True)
     version("0.3.0", tag="v0.3.0", submodules=True)
+    version("0.4.2", sha256="76e9328d67f0359653a3472e2fe51a130e48fc77cfe540040e23946dd163da05")
 
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-nanobind@1.3.2:", when="@0.2.3:", type="build")
