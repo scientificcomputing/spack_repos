@@ -20,6 +20,7 @@ class PyPyadjoint(PythonPackage):
 
     version("master", branch="master")
     version("2026.4.1", sha256="425d8061311fd32cbd82c94bfd7ec8c75421d39d020cbb2940ac94cc700264bd")
+    version("2026.9.0", sha256="e0b17a71da4913033d7b1bc8c1b5ef57149412993d709c579e75d6de64114d94")
 
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("py-setuptools@77:", type="build")

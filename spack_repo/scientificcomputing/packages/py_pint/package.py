@@ -34,6 +34,7 @@ class PyPint(PythonPackage):
     version("0.10", sha256="38a4d6e242b8bab693cd83a5f5ade3d816463b498658e7ab14ce64c4d458c88b")
     version("0.9", sha256="32d8a9a9d63f4f81194c0014b3b742679dce81a26d45127d9810a68a561fe4e2")
     version("0.8.1", sha256="afcf31443a478c32bbac4b00337ee9026a13d0e2ac83d30c79151462513bb0d4")
+    version("0.26.1", sha256="1bbde36eae57a5a289cd05081c6405618a5899814940752064ce351cd0204f71")
 
     variant("numpy", default=False, description="Optional numpy support")
     variant("xarray", default=False, description="Optional xarray support")

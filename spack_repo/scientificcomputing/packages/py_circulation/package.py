@@ -42,6 +42,7 @@ class PyCirculation(PythonPackage):
     version("main", branch="main")
     version("0.2.1", sha256="7198386d06d0ebd00ec275c82592700eb2f5b2f1f5e1564e0b1c3baad8ddd934")
     version("0.3.1", sha256="266f722295a215164ee3d053a92ce98ce6aac8b2aac7acbbe6b70967ae83a8e5")
+    version("0.4.0", sha256="96641511d3bb6592c4f1193e5978c86ce9b67d23bd9c9ba2dd50a6f91197435a")
 
     # Python version and Build backend
     depends_on("python@3.11:", type=("build", "run"))
