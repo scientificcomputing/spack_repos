@@ -24,6 +24,7 @@ class PyFenicsxIi(PythonPackage):
 
     version("main", branch="main")
     version("0.4.0", sha256="e3ec634ccb34e70c77f39bd3f7498910139f57653a09ef4278461f34bd72d9d1")
+    version("0.6.0", sha256="8f5c75aec84b75ed803bdf0c9d9973b0d39c521dcc524f98de346c8e2d248f86")
 
     variant("petsc", default=True, description="PETSc support")
 
