@@ -63,6 +63,7 @@ The following packages are currently available in this repository:
 - [ ] [dolfinx-mpc](https://github.com/jorgensd/dolfinx_mpc)
 - [x] [cardiac-geometriesx](https://github.com/ComputationalPhysiology/cardiac-geometriesx)
 - [x] [circulation](https://github.com/ComputationalPhysiology/circulation)
+- [x] [crossbridge](https://github.com/ComputationalPhysiology/crossbridge)
 - [x] [fenicsx-beat](https://github.com/finsberg/fenicsx-beat)
 - [x] [fenicsx-ldrb](https://github.com/finsberg/fenicsx-ldrb)
 - [x] [fenicsx-pulse](https://github.com/finsberg/fenicsx-pulse)

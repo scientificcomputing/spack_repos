@@ -158,5 +158,16 @@
       "+petsc+scifem+fenicsx-ii+moola"
     ],
     "import_name": "dolfinx_adjoint"
+  },
+  "py-crossbridge": {
+    "versions": [
+      "main",
+      "0.3.0",
+      "0.2.0"
+    ],
+    "specs": [
+      ""
+    ],
+    "import_name": "crossbridge"
   }
 }
