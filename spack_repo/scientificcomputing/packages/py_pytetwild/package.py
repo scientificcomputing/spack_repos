@@ -21,14 +21,23 @@ class PyPytetwild(PythonPackage):
     version("main", branch="main", submodules=True)
     version("0.2.3", tag="v0.2.3", submodules=True)
     version("0.3.0", tag="v0.3.0", submodules=True)
-    version("0.4.2", sha256="76e9328d67f0359653a3472e2fe51a130e48fc77cfe540040e23946dd163da05")
+    version(
+        "0.4.2", tag="v0.4.2", commit="85c28acd6e1546b7c19b96fd6a5ee5bc2184b176", submodules=True
+    )
 
     depends_on("python@3.10:", type=("build", "run"))
+    depends_on("python@:3.14", when="@0.4:", type=("build", "run"))
     depends_on("py-nanobind@1.3.2:", when="@0.2.3:", type="build")
     depends_on("py-scikit-build-core@0.10: +pyproject", when="@0.2.3:", type="build")
+    depends_on("py-setuptools-scm@8:", when="@0.4:", type="build")
     depends_on("gmp", type="build")
 
     depends_on("py-numpy", type="run")
+
+    def setup_build_environment(self, env: EnvironmentModifications) -> None:
+        # Version is derived from git metadata via setuptools-scm
+        if self.spec.satisfies("@0.4:") and not self.spec.satisfies("@main"):
+            env.set("SETUPTOOLS_SCM_PRETEND_VERSION", str(self.spec.version))
 
     def patch(self):
         if self.spec.satisfies("@0.2.3"):
