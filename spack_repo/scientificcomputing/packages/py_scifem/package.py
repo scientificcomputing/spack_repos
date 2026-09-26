@@ -37,6 +37,7 @@ class PyScifem(PythonPackage):
     variant("petsc", default=False, description="PETSc support")
     variant("biomed", default=False, description="Biomedical imaging support")
     variant("hdf5", default=False, description="HDF5 support")
+    variant("gmsh", default=True, when="@0.24:", description="Gmsh support")
 
     depends_on("python@3.10:", type=("build", "run"))
 
@@ -74,3 +75,8 @@ class PyScifem(PythonPackage):
 
     with when("+hdf5"):
         depends_on("py-h5py+mpi", when="+hdf5", type=("build", "run"))
+
+    with when("+gmsh"):
+        # Use the source-built gmsh (it ships gmsh.py and puts it on PYTHONPATH) rather
+        # than py-gmsh, whose PyPI wheel links against system X11/GL libraries.
+        depends_on("gmsh+opencascade+shared~fltk", type=("build", "run"))
