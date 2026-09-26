@@ -77,4 +77,6 @@ class PyScifem(PythonPackage):
         depends_on("py-h5py+mpi", when="+hdf5", type=("build", "run"))
 
     with when("+gmsh"):
-        depends_on("py-gmsh", type=("build", "run"))
+        # Use the source-built gmsh (it ships gmsh.py and puts it on PYTHONPATH) rather
+        # than py-gmsh, whose PyPI wheel links against system X11/GL libraries.
+        depends_on("gmsh+opencascade+shared~fltk", type=("build", "run"))
