@@ -24,6 +24,7 @@ class PyFenicsxPulse(PythonPackage):
     version("0.7.0", sha256="ead5eee4f430f7ab8b3a6cf4608b12088f7d8768da5bf22c3addca02648d4d9e")
     version("0.8.0", sha256="f036cc045f36ab0d18fbac839135f80f2b573a6b99b4e23363dddda1a10dfcb5")
     version("0.9.0", sha256="819e0f35c1005f804b190d408228942a0b0d1d0167a382d19492974f358f9808")
+    version("0.10.0", sha256="01a36a5d5c47590fee86ca002ebcd7e623b34258373b5562a29340a429b6715d")
 
     variant(
         "cardiac-geometries", default=True, description="Add cardiac geometries as a dependency"
