@@ -24,6 +24,7 @@ class PyPytetwild(PythonPackage):
     version(
         "0.4.2", tag="v0.4.2", commit="85c28acd6e1546b7c19b96fd6a5ee5bc2184b176", submodules=True
     )
+    version("0.4.2", sha256="76e9328d67f0359653a3472e2fe51a130e48fc77cfe540040e23946dd163da05")
 
     depends_on("python@3.10:", type=("build", "run"))
     depends_on("python@:3.14", when="@0.4:", type=("build", "run"))
