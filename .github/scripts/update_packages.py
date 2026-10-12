@@ -70,6 +70,11 @@ def compute_sha256(url):
         return None
 
 
+def has_version(content, version):
+    # Also match ruff-wrapped calls, e.g. version(\n    "1.0", sha256=...)
+    return re.search(rf"version\(\s*[\"']{re.escape(version)}[\"']", content) is not None
+
+
 def process_package(package_py_path):
     with open(package_py_path, "r") as f:
         content = f.read()
@@ -91,7 +96,7 @@ def process_package(package_py_path):
         new_version, tag_name = get_github_latest_release(owner, repo)
         if new_version:
             # Check if this version is already declared
-            if f'version("{new_version}"' in content or f"version('{new_version}'" in content:
+            if has_version(content, new_version):
                 return False
 
             # Get sha256 for the new tarball
@@ -101,7 +106,7 @@ def process_package(package_py_path):
     if not new_version or not sha256:
         return False
 
-    if f'version("{new_version}"' in content or f"version('{new_version}'" in content:
+    if has_version(content, new_version):
         return False
 
     print(f"Found new version {new_version} for {package_py_path.parent.name}")

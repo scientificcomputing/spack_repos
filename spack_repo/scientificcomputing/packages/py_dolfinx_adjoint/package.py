@@ -43,11 +43,14 @@ class PyDolfinxAdjoint(PythonPackage):
         depends_on("py-petsc4py", type=("build", "run"))
         depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
 
+    # Released scifem/fenicsx-ii do not track the dolfinx@main API
     with when("+scifem"):
         depends_on("py-scifem", type=("build", "run"))
+        depends_on("py-scifem@main", when="@main", type=("build", "run"))
 
     with when("+fenicsx-ii"):
         depends_on("py-fenicsx-ii", type=("build", "run"))
+        depends_on("py-fenicsx-ii@main", when="@main", type=("build", "run"))
 
     with when("+moola"):
         depends_on("py-moola@0.1.6:", type=("build", "run"))
