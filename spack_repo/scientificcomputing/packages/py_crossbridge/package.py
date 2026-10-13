@@ -21,6 +21,7 @@ class PyCrossbridge(PythonPackage):
     version("main", branch="main")
     version("0.3.0", sha256="e09d0a37b7b9c777c6a244bca7be315292e6ea95a56506c280490ca20ee97b9b")
     version("0.2.0", sha256="c71335c8a49734a93cf3730160f0d552627c2c207d9505cbfe34669d5f4467fe")
+    version("0.4.0", sha256="0bdb1d229b344bf82cc78f345fe9e16ed99dbd2c4cf1008a74eeb76d77db8935")
 
     variant(
         "fast",
