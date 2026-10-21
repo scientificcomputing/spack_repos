@@ -2,9 +2,8 @@
   "py-io4dolfinx": {
     "versions": [
       "main",
-      "1.4.0",
-      "1.3.0",
-      "1.2.0"
+      "1.5.0",
+      "1.4.0"
     ],
     "specs": [
       "^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
