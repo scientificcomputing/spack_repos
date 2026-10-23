@@ -32,7 +32,7 @@ class PyDolfinxAdjoint(PythonPackage):
 
     depends_on("py-fenics-dolfinx@0.11:", when="@0.3:", type=("build", "run"))
     depends_on("py-fenics-dolfinx@main", when="@main", type=("build", "run"))
-    depends_on("py-pyadjoint@master", type=("build", "run"))
+    depends_on("py-pyadjoint@main", type=("build", "run"))
     depends_on("py-packaging@24.2:", type=("build", "run"))
     # Disk checkpointing storage; built with MPI for a single shared checkpoint file
     depends_on("py-h5py+mpi", when="@main", type=("build", "run"))
