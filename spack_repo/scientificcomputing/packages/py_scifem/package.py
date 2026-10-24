@@ -33,6 +33,7 @@ class PyScifem(PythonPackage):
     version("0.24.0", sha256="8fc451c735fc09fb9fcf1bc1228b02330d7f10d0d2477aa437afdb6f9fd10d47")
     version("0.25.0", sha256="ca6e0a4d0c54d531f78df1f5af9f1c7464ccbe96d02826ec6023628069994a70")
     version("0.26.0", sha256="f0f755618d830db20569874eb0b94480276512b8108f347701d4b15a75259ef7")
+    version("0.27.0", sha256="07df6813c5da0583d25de06e2dd6d00c76ff3d1e61c13b9c024dd93892792105")
 
     variant("adios2", default=False, description="ADIOS2 support")
     variant("petsc", default=False, description="PETSc support")
@@ -40,6 +41,7 @@ class PyScifem(PythonPackage):
     variant("hdf5", default=False, description="HDF5 support")
     variant("gmsh", default=True, when="@0.24:", description="Gmsh support")
 
+    depends_on("python@3.12:", when="@0.27:", type=("build", "run"))
     depends_on("python@3.10:", type=("build", "run"))
 
     depends_on("cxx", type="build")
@@ -61,6 +63,8 @@ class PyScifem(PythonPackage):
     depends_on("py-fenics-dolfinx@:0.10", when="@:0.19", type=("build", "run"))
     depends_on("py-fenics-dolfinx@0.9:", when="@0.4:", type=("build", "run"))
     depends_on("py-fenics-dolfinx@main", when="@main", type=("build", "run"))
+    depends_on("py-fenicsx-compat@0.2:", when="@0.27:", type=("build", "run"))
+    depends_on("py-fenicsx-compat@main", when="@main", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-packaging", type=("build", "run"))
 

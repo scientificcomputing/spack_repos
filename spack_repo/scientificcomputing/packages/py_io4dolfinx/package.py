@@ -29,6 +29,7 @@ class PyIo4dolfinx(PythonPackage):
     version("1.2.0", sha256="2da5fb02998cef9203c2da75a6280231ff66bc044557e6816148e968fcbf53b7")
     version("1.3.0", sha256="aa9d78c7b56eaf758104576200bd600e985dedbeb37f4fbf30f09ac5481e9c83")
     version("1.4.0", sha256="16d6fdf9d2e5b6f250e6b8833bb1018344c71262bebb30f3ba355262ce9d7b73")
+    version("1.5.0", sha256="dc773fc6e76dc320fa34d33ba21b7d95c9178a269244f97c1ed985ed16a63674")
 
     variant("adios2", default=True, description="ADIOS2 backend support")
     variant("h5py", default=True, description="H5Py backend support")
@@ -42,6 +43,8 @@ class PyIo4dolfinx(PythonPackage):
 
     depends_on("py-fenics-dolfinx@0.10:", when="@1.1:", type=("build", "run"))
     depends_on("py-fenics-dolfinx@main", when="@main", type=("build", "run"))
+    depends_on("py-fenicsx-compat@0.3:", when="@1.5:", type=("build", "run"))
+    depends_on("py-fenicsx-compat@main", when="@main", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-packaging", type=("build", "run"))
     depends_on("py-setuptools@42:", type="build")
