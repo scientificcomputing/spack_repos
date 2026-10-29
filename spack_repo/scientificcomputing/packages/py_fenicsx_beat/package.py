@@ -30,6 +30,12 @@ class PyFenicsxBeat(PythonPackage):
     variant(
         "cardiac-geometries", default=True, description="Add cardiac geometries as a dependency"
     )
+    variant(
+        "cli",
+        default=False,
+        when="@0.7:",
+        description="Dependencies of the TOML-config-driven `beat` command line interface",
+    )
 
     depends_on("python@3.10:", type=("build", "run"))
 
@@ -50,3 +56,12 @@ class PyFenicsxBeat(PythonPackage):
     with when("+cardiac-geometries"):
         depends_on("py-cardiac-geometriesx", type=("build", "run"))
         depends_on("py-cardiac-geometriesx@0.17:", type=("build", "run"), when="@0.9:")
+
+    requires("+cardiac-geometries", when="+cli", msg="The beat CLI needs cardiac-geometriesx")
+
+    with when("+cli"):
+        depends_on("py-pydantic@2:", type=("build", "run"))
+        depends_on("py-pydantic-pint", type=("build", "run"))
+        depends_on("py-toml", type=("build", "run"))
+        depends_on("py-gotranx", type=("build", "run"))
+        depends_on("py-io4dolfinx", type=("build", "run"))
