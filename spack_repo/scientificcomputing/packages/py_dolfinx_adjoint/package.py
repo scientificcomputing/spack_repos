@@ -38,6 +38,7 @@ class PyDolfinxAdjoint(PythonPackage):
     depends_on("py-fenicsx-compat@0.4:", when="@0.4:", type=("build", "run"))
     depends_on("py-fenicsx-compat@main", when="@main", type=("build", "run"))
     # Disk checkpointing storage; built with MPI for a single shared checkpoint file
+    depends_on("py-h5py+mpi", when="@0.4:", type=("build", "run"))
     depends_on("py-h5py+mpi", when="@main", type=("build", "run"))
     depends_on("py-typing-extensions", when="^python@:3.10", type=("build", "run"))
     depends_on("py-setuptools@42:", type="build")
