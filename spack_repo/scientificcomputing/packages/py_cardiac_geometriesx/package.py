@@ -57,6 +57,7 @@ class PyCardiacGeometriesx(PythonPackage):
     depends_on("py-fenics-dolfinx+petsc4py", type=("build", "run"))
     depends_on("py-rich-click", type=("build", "run"))
     depends_on("py-cardiac-geometries-core", type=("build", "run"))
+    depends_on("py-cardiac-geometries-core@1.6:", type=("build", "run"), when="@0.17:")
     depends_on("py-structlog", type=("build", "run"))
 
     depends_on("py-io4dolfinx+adios2+xdmf", type=("build", "run"), when="@0.13.0:")
@@ -67,6 +68,8 @@ class PyCardiacGeometriesx(PythonPackage):
 
     with when("+ukb"):
         depends_on("py-ukb-atlas", type=("build", "run"))
+        depends_on("py-cardiac-geometries-core@2.1.0:", type=("build", "run"), when="@0.17:")
 
     with when("+ldrb"):
         depends_on("py-fenicsx-ldrb", type=("build", "run"))
+        depends_on("py-cardiac-geometries-core@0.3.0:", type=("build", "run"), when="@0.17:")
