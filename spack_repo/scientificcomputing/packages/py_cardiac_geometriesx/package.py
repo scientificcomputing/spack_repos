@@ -63,6 +63,7 @@ class PyCardiacGeometriesx(PythonPackage):
     depends_on("py-adios4dolfinx", type=("build", "run"), when="@:0.12.0")
 
     depends_on("py-scifem", type=("build", "run"))
+    depends_on("py-fenicsx-compat@0.4:", when="@0.17:", type=("build", "run"))
 
     with when("+ukb"):
         depends_on("py-ukb-atlas", type=("build", "run"))
