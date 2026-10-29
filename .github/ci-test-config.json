@@ -79,6 +79,7 @@
   "py-gotranx": {
     "versions": [
       "main",
+      "2.9.0",
       "2.5.0"
     ],
     "specs": [
@@ -98,6 +99,7 @@
   "py-cardiac-geometriesx": {
     "versions": [
       "main",
+      "0.17.0",
       "0.16.0"
     ],
     "specs": [
@@ -118,6 +120,7 @@
   "py-ukb-atlas": {
     "versions": [
       "main",
+      "2.1.0",
       "1.4.0"
     ],
     "specs": [
@@ -128,6 +131,7 @@
   "py-fenicsx-ldrb": {
     "versions": [
       "main",
+      "0.3.0",
       "0.1.19"
     ],
     "specs": [
@@ -138,6 +142,7 @@
   "py-dolfinx-adjoint": {
     "versions": [
       "main",
+      "0.4.0",
       "0.3.0"
     ],
     "specs": [
@@ -148,6 +153,7 @@
   "py-crossbridge": {
     "versions": [
       "main",
+      "0.5.0",
       "0.4.0"
     ],
     "specs": [

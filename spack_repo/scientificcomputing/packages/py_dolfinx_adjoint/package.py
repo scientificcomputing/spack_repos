@@ -22,6 +22,7 @@ class PyDolfinxAdjoint(PythonPackage):
 
     version("main", branch="main")
     version("0.3.0", sha256="aa9b2564a4e607be97c276a8986a23e4ea349f85dc8ffa28dfb33624d706f865")
+    version("0.4.0", sha256="d41e9f47fbe5ae67d3a8fa210c620d49eb1bbdef721610e72fc1ebdd96a368e4")
 
     variant("scifem", default=False, description="Enable scifem support")
     variant("fenicsx-ii", default=False, description="Enable fenicsx_ii support")

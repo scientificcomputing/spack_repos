@@ -31,6 +31,9 @@ class PyDolfinxMpc(PythonPackage):
     version(
         "0.12.0.dev0", sha256="a18ac6a041cdc3af67977a1a71d33459863fe609167a51141a893352cf1d0480"
     )
+    version(
+        "0.12.0.dev1", sha256="1ace662e389b1c18f1ac46c9bb2086affccafff46b88cafa45374fbdd89c430b"
+    )
 
     variant("numba", default=False, description="numba support")
 
