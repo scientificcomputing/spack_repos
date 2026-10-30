@@ -145,7 +145,6 @@
   "py-dolfinx-adjoint": {
     "versions": [
       "main",
-      "0.4.0.post0",
       "0.4.0",
       "0.3.0"
     ],
