@@ -47,10 +47,12 @@ class PyUkbAtlas(PythonPackage):
 
     # Python version and Build backend
     depends_on("python@3.10:", type=("build", "run"))
+    depends_on("python@3.11:", type=("build", "run"), when="@2.1:")
     depends_on("py-setuptools@61.2:", type="build")
 
     # Core dependencies
     depends_on("py-scipy", type=("build", "run"))
+    depends_on("py-requests", type=("build", "run"), when="@1.4:")
     depends_on("py-meshio@2.3.5:", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-h5py+mpi", type=("build", "run"))
