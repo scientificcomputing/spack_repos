@@ -69,6 +69,7 @@
   "py-fenicsx-beat": {
     "versions": [
       "main",
+      "0.10.0",
       "0.9.0",
       "0.7.2"
     ],
@@ -100,6 +101,7 @@
   "py-cardiac-geometriesx": {
     "versions": [
       "main",
+      "0.18.0",
       "0.17.0",
       "0.16.0"
     ],
@@ -143,6 +145,7 @@
   "py-dolfinx-adjoint": {
     "versions": [
       "main",
+      "0.4.0.post0",
       "0.4.0",
       "0.3.0"
     ],
