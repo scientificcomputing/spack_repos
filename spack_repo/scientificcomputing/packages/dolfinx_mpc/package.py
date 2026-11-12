@@ -40,6 +40,7 @@ class DolfinxMpc(CMakePackage):
     depends_on("cxx", type="build")
 
     depends_on("fenics-dolfinx@main+petsc", when="@main")
+    depends_on("fenics-dolfinx@0.11+petsc", when="@0.11")
     depends_on("fenics-dolfinx@0.10+petsc", when="@0.10")
     depends_on("fenics-dolfinx@0.9+petsc", when="@0.9")
     depends_on("fenics-dolfinx@0.8+petsc", when="@0.8")
