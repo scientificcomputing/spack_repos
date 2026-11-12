@@ -51,11 +51,13 @@ class PyDolfinxMpc(PythonPackage):
     depends_on("py-mpi4py", type=("build", "run"))
 
     depends_on("dolfinx-mpc@main", when="@main", type=("build"))
+    depends_on("dolfinx-mpc@0.11", when="@0.11", type=("build"))
     depends_on("dolfinx-mpc@0.10.1", when="@0.10.1", type=("build"))
     depends_on("dolfinx-mpc@0.9.3", when="@0.9.3", type=("build"))
     depends_on("dolfinx-mpc@0.8.1", when="@0.8.1", type=("build"))
 
     depends_on("py-fenics-dolfinx@main+petsc4py", when="@main")
+    depends_on("py-fenics-dolfinx@0.11:+petsc4py", when="@0.11")
     depends_on("py-fenics-dolfinx@0.10:+petsc4py", when="@0.10")
     depends_on("py-fenics-dolfinx@0.9+petsc4py", when="@0.9")
     depends_on("py-fenics-dolfinx@0.8+petsc4py", when="@0.8")
