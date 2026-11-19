@@ -19,6 +19,7 @@ class PyAnnotatedDoc(PythonPackage):
 
     version("0.0.4", sha256="fbcda96e87e9c92ad167c2e53839e57503ecfda18804ea28102353485033faa4")
     version("0.0.5", sha256="c7e58ce09192557605d8bbd92836d7e1d520ac9580096042c0bfd197efacf1bb")
+    version("0.0.7", sha256="0a30ef8f5322a4173720ae6712dc9a5e58f5a19868f3f167b4b5778db066c2b5")
 
     depends_on("python@3.8:", type=("build", "run"))
     depends_on("py-pdm-backend", type="build")
