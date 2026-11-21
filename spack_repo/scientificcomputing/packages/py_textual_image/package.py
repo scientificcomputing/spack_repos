@@ -39,6 +39,7 @@ class PyTextualImage(PythonPackage):
     version("0.14.0", sha256="230e2c38738a3d96ca3bcf99c6680b898917003bb21bd5fa7e22cbb16e843235")
     version("0.14.1", sha256="502542955452ca6d67e4e0701021eed6bebbe2e1ccee8dfcb42e5083c9573eda")
     version("0.14.2", sha256="0ec2ac1e2a9b30bfc478708ea011eb31e7844c377322ed2094976c1a84c131ba")
+    version("0.14.4", sha256="b410e6a3af16b0d6a125ea18a57105a1f1dbde48420355c0e2e3b9a06f6cc575")
 
     depends_on("python@3.12:", type=("build", "run"))
 
