@@ -2,9 +2,7 @@
   "py-io4dolfinx": {
     "versions": [
       "main",
-      "2.1.0",
-      "1.5.0",
-      "1.4.0"
+      "2.1.0"
     ],
     "specs": [
       "^py-fenics-dolfinx%c,cxx=gcc@13.3.0",
@@ -58,9 +56,7 @@
   "py-scifem": {
     "versions": [
       "main",
-      "0.27.1",
-      "0.27.0",
-      "0.26.0"
+      "0.27.1"
     ],
     "specs": [
       "+adios2+petsc+biomed+hdf5 ^petsc+mumps"
@@ -71,10 +67,7 @@
   "py-fenicsx-beat": {
     "versions": [
       "main",
-      "0.12.0",
-      "0.10.0",
-      "0.9.0",
-      "0.7.2"
+      "0.12.0"
     ],
     "specs": [
       "^py-fenics-dolfinx%gcc@13"
@@ -84,8 +77,7 @@
   "py-gotranx": {
     "versions": [
       "main",
-      "2.9.0",
-      "2.5.0"
+      "2.9.0"
     ],
     "specs": [
       ""
@@ -104,10 +96,7 @@
   "py-cardiac-geometriesx": {
     "versions": [
       "main",
-      "0.23.0",
-      "0.18.0",
-      "0.17.0",
-      "0.16.0"
+      "0.23.0"
     ],
     "specs": [
       "^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
@@ -117,8 +106,7 @@
   "py-fenicsx-pulse": {
     "versions": [
       "main",
-      "0.13.0",
-      "0.11.1"
+      "0.13.0"
     ],
     "specs": [
       "^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
@@ -128,9 +116,7 @@
   "py-ukb-atlas": {
     "versions": [
       "main",
-      "2.2.0",
-      "2.1.0",
-      "1.4.0"
+      "2.2.0"
     ],
     "specs": [
       ""
@@ -140,9 +126,7 @@
   "py-fenicsx-ldrb": {
     "versions": [
       "main",
-      "0.5.0",
-      "0.3.0",
-      "0.1.19"
+      "0.5.0"
     ],
     "specs": [
       "^py-fenics-dolfinx%c,cxx=gcc@13.3.0"
@@ -152,9 +136,7 @@
   "py-dolfinx-adjoint": {
     "versions": [
       "main",
-      "0.4.1",
-      "0.4.0",
-      "0.3.0"
+      "0.4.1"
     ],
     "specs": [
       "+petsc+scifem+fenicsx-ii+moola"
@@ -164,9 +146,7 @@
   "py-crossbridge": {
     "versions": [
       "main",
-      "0.6.0",
-      "0.5.0",
-      "0.4.0"
+      "0.6.0"
     ],
     "specs": [
       ""

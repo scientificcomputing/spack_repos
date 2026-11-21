@@ -66,6 +66,3 @@ class PyIo4dolfinx(PythonPackage):
 
     with when("+pyvista"):
         depends_on("py-pyvista", type=("build", "run"))
-        # NOTE: adios2+hdf5 sets HDF5_PLUGIN_PATH to the view's lib dir, so HDF5
-        # dlopens every VTK library there. With vtk@9.6 this segfaults on import.
-        depends_on("vtk@:9.5", type=("build", "run"))
