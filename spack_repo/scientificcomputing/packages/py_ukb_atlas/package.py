@@ -45,6 +45,7 @@ class PyUkbAtlas(PythonPackage):
     version("1.4.0", sha256="03c6ee49988e579682cbb4a8fcf7e9cfadd34f60598c871843cb334ffdad7dd1")
     version("2.1.0", sha256="722fa0d0e3ca05bd576b475e3a9cb74bea3d3ef76104810f7ab5a4bed6a23a4a")
     version("2.2.0", sha256="2c7f39f20c0d03a632e292ee63730892d99510a389a5df18ce7b4d9ad960e15a")
+    version("2.2.1", sha256="0b4b0bdd5fdc9626c21b758d16ddb0b93122d467e159149649296fd92b3172d1")
 
     # Python version and Build backend
     depends_on("python@3.10:", type=("build", "run"))

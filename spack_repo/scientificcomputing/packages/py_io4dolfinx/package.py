@@ -31,6 +31,7 @@ class PyIo4dolfinx(PythonPackage):
     version("1.4.0", sha256="16d6fdf9d2e5b6f250e6b8833bb1018344c71262bebb30f3ba355262ce9d7b73")
     version("1.5.0", sha256="dc773fc6e76dc320fa34d33ba21b7d95c9178a269244f97c1ed985ed16a63674")
     version("2.1.0", sha256="99c463bbd524502c32661dc786f425fe8ee3168ae15b11e10063baec3b175718")
+    version("2.2.0", sha256="1ab3119fa52863e66e830458689fb4d6bd7984452dac1fedef67193e36a00249")
 
     variant("adios2", default=True, description="ADIOS2 backend support")
     variant("h5py", default=True, description="H5Py backend support")
