@@ -28,6 +28,7 @@ class PyFenicsxBeat(PythonPackage):
     version("0.9.0", sha256="190fa5b83d590f0e395159cb73b72ee4844a6c06c0d37d91b3dc11f6232f3ef0")
     version("0.10.0", sha256="a38fbc81155544ec5892e9e70416e024c9c6e6eb0a3862eecd7acc1ced484941")
     version("0.12.0", sha256="484a1535292bb589c2a5212ea0f96cf94d6be96fe3edb11e61b6a303889febbb")
+    version("0.13.0", sha256="21de5daf2720394a82897d23745d49904e3b1a2b90d17795fd969d860ccf6133")
 
     variant(
         "cardiac-geometries", default=True, description="Add cardiac geometries as a dependency"

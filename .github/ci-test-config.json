@@ -2,6 +2,7 @@
   "py-io4dolfinx": {
     "versions": [
       "main",
+      "2.2.0",
       "2.1.0"
     ],
     "specs": [
@@ -67,6 +68,7 @@
   "py-fenicsx-beat": {
     "versions": [
       "main",
+      "0.13.0",
       "0.12.0"
     ],
     "specs": [
@@ -77,6 +79,7 @@
   "py-gotranx": {
     "versions": [
       "main",
+      "2.11.0",
       "2.9.0"
     ],
     "specs": [
@@ -96,6 +99,7 @@
   "py-cardiac-geometriesx": {
     "versions": [
       "main",
+      "0.23.1",
       "0.23.0"
     ],
     "specs": [
@@ -116,6 +120,7 @@
   "py-ukb-atlas": {
     "versions": [
       "main",
+      "2.2.1",
       "2.2.0"
     ],
     "specs": [
